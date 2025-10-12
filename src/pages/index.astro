@@ -6,62 +6,104 @@ const year = new Date().getFullYear();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
-<meta name="description" content="Track your cycle (with phase insights), workouts, macros, and journaling — plus a Face ID private progress gallery. Calibi Sync is iOS-only, 16+." />
-<meta name="theme-color" content="#F4C8C2" />
+<meta name="description" content="Track your cycle (with phase insights), workouts, macros, and journaling — plus a Face ID private progress gallery. iOS only, 16+. Free for 7 days." />
+<meta name="theme-color" content="#F7D6D0" />
 <link rel="icon" href="/favicon.ico" />
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <style>
-:root { --bg:#FFF7F4; --pink:#F4C8C2; --willow:#A3C4A8; --brown:#4B3F36; --brown2:#6B5C4F; --radius:16px; }
-html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);
-font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
-h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;margin:0;}
-a{text-decoration:none;color:var(--brown);}
-.container{max-width:1120px;margin:0 auto;padding:0 20px;}
-.section{padding:64px 0;}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;
-border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
-.btn-primary{background:var(--willow);color:#fff;} .btn-primary:hover{opacity:.9;}
-.btn-secondary{background:var(--pink);color:var(--brown);} .btn-secondary:hover{filter:brightness(.98);}
-.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);
-border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
-.grid{display:grid;gap:16px;}
-.grid-2{grid-template-columns:1fr;}
-@media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
-.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);}
-.footer a:hover{text-decoration:underline;}
-.hero-img{width:100%;max-width:520px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
-.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);
-border-radius:999px;font-weight:600;font-size:14px;}
-.note{color:var(--brown2);font-size:14px}
-#privacy,#terms{padding:64px 0;background:#fff;}
-#privacy h1,#terms h1{font-size:32px;margin-bottom:12px;}
-#privacy p,#terms p,#privacy li,#terms li{line-height:1.7;color:var(--brown2);}
-.list{margin:10px 0 0 0;padding:0;list-style:none;}
-.list li{margin:8px 0;}
-.muted{color:var(--brown2);}
+:root{
+--bg:#FFFFFF; /* full white canvas */
+--pink:#F7D6D0; /* baby pink accent */
+--willow:#A3C4A8; /* soft sage / green */
+--brown:#4B3F36; /* primary text */
+--brown2:#6B5C4F; /* secondary text */
+--line:#EFEFEF; /* subtle borders on white */
+--radius:16px;
+
+/* shadow system */
+--shadow-1: 0 1px 2px rgba(0,0,0,.05);
+--shadow-2: 0 6px 16px rgba(0,0,0,.08);
+--shadow-3: 0 16px 40px rgba(0,0,0,.10);
+}
+
+html,body{ margin:0; padding:0; background:var(--bg); color:var(--brown);
+font-family:'Poppins',system-ui,sans-serif; font-size:16px; line-height:1.6; }
+
+h1,h2,h3{ font-family:'Playfair Display',serif; line-height:1.2; margin:0; }
+a{ text-decoration:none; color:var(--brown); }
+
+.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
+.section{ padding:72px 0; }
+
+/* Cards & elevation */
+.card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:var(--radius);
+padding:26px;
+box-shadow:var(--shadow-1);
+transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+}
+.card:hover{ box-shadow:var(--shadow-2); transform:translateY(-2px); border-color:#EDEDED; }
+
+/* Buttons */
+.btn{
+display:inline-flex; align-items:center; justify-content:center;
+padding:12px 18px; border-radius:12px; font-weight:600; border:1px solid transparent;
+transition:.15s ease-in-out; cursor:pointer;
+}
+.btn-primary{ background:var(--willow); color:#fff; box-shadow:var(--shadow-1); }
+.btn-primary:hover{ box-shadow:var(--shadow-2); transform:translateY(-1px); }
+.btn-secondary{ background:var(--pink); color:var(--brown); }
+.btn-secondary:hover{ filter:brightness(.98); }
+
+/* Layout helpers */
+.grid{ display:grid; gap:18px; }
+.grid-2{ grid-template-columns:1fr; }
+@media(min-width:768px){ .grid-2{ grid-template-columns:repeat(2,1fr); } }
+
+.footer{
+padding:28px 0; background:#fff; border-top:1px solid var(--line);
+}
+.footer a:hover{ text-decoration:underline; }
+
+.hero-img{
+width:100%; max-width:520px; border-radius:24px;
+box-shadow:var(--shadow-3);
+}
+.tag{
+display:inline-block; padding:6px 10px; background:var(--pink); color:var(--brown);
+border:1px solid color-mix(in oklab, var(--pink) 60%, var(--line));
+border-radius:999px; font-weight:600; font-size:14px; box-shadow:var(--shadow-1);
+}
+
+.muted{ color:var(--brown2); }
+.list{ margin:10px 0 0 0; padding:0; list-style:none; }
+.list li{ margin:8px 0; }
 
 /* FAQ */
-#faq .qa{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);border-radius:14px;overflow:hidden;}
-#faq details{border-bottom:1px solid color-mix(in oklab,var(--willow)20%,transparent);}
-#faq details:last-child{border-bottom:none;}
-#faq summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:600;}
-#faq summary::marker{display:none;}
-#faq details[open] summary{background:color-mix(in oklab,#fff 85%, var(--willow) 15%);}
-#faq .answer{padding:0 18px 18px 18px;color:var(--brown2);}
+#faq .qa{ background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-1); }
+#faq details{ border-bottom:1px solid var(--line); }
+#faq details:last-child{ border-bottom:none; }
+#faq summary{ cursor:pointer; list-style:none; padding:16px 18px; font-weight:600; }
+#faq summary::marker{ display:none; }
+#faq details[open] summary{ background:color-mix(in oklab, #fff 85%, var(--pink) 15%); }
+#faq .answer{ padding:0 18px 18px 18px; color:var(--brown2); }
 </style>
 </head>
 
 <body>
 <!-- HEADER -->
-<header class="container" style="padding:18px 0;display:flex;align-items:center;justify-content:space-between;">
-<a href="#top" style="display:flex;gap:10px;align-items:center;">
-<img src="/Untitled%20design.PNG" alt="Calibi Sync" width="36" height="36" style="border-radius:8px;" />
-<strong>Calibi Sync</strong>
+<header class="container" style="padding:18px 0; display:flex; align-items:center; justify-content:space-between;">
+<a href="#top" style="display:flex; gap:12px; align-items:center;">
+<!-- Use your exact file name; spaces become %20 -->
+<img src="/Untitled%20design.PNG" alt="Calibi Sync Logo" width="42" height="42" style="border-radius:10px; vertical-align:middle;" />
+<strong style="font-size:18px;">Calibi Sync</strong>
 </a>
-<nav style="display:flex;gap:18px;">
+<nav style="display:flex; gap:18px;">
 <a href="#features">Features</a>
 <a href="#pricing">Pricing</a>
 <a href="#faq">FAQ</a>
@@ -72,17 +114,18 @@ border-radius:999px;font-weight:600;font-size:14px;}
 
 <!-- HERO -->
 <section id="top" class="section">
-<div class="container" style="display:grid;gap:28px;align-items:center;">
+<div class="container" style="display:grid; gap:28px; align-items:center;">
 <div>
 <span class="tag">iOS only • 16+</span>
-<h1 style="font-size:48px;margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
-<p style="margin-top:10px;color:var(--brown2);max-width:52ch;">
+<h1 style="font-size:48px; margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
+<p class="muted" style="margin-top:10px; max-width:52ch;">
 Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.
 </p>
-<p class="note" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
-<div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
-<!-- Replace href with your real App Store link when ready -->
+<p class="muted" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
+<div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
+<!-- Replace with your real App Store URL when ready -->
 <a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">Start Syncing on the App&nbsp;Store</a>
+<a class="btn btn-secondary" href="#features">See Features</a>
 </div>
 </div>
 <div><img class="hero-img" src="/images/iphone-mock.png" alt="Calibi Sync app" /></div>
@@ -90,7 +133,7 @@ Track your cycle (with phase insights), log workouts, count macros, journal, and
 </section>
 
 <!-- FEATURES -->
-<section id="features" class="section" style="background:#fff;">
+<section id="features" class="section">
 <div class="container">
 <h2 style="font-size:36px;">Designed to sync with you</h2>
 <div class="grid grid-2" style="margin-top:22px;">
@@ -137,7 +180,7 @@ Track your cycle (with phase insights), log workouts, count macros, journal, and
 </ul>
 </div>
 
-<div class="card" style="border-color:var(--willow);">
+<div class="card" style="border-color: color-mix(in oklab, var(--willow) 40%, #fff);">
 <h3>Premium</h3>
 <p class="muted">After trial • iOS only</p>
 <ul class="list">
@@ -152,7 +195,7 @@ Track your cycle (with phase insights), log workouts, count macros, journal, and
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="section" style="background:#fff;">
+<section id="faq" class="section">
 <div class="container">
 <h2 style="font-size:32px;">Frequently Asked Questions</h2>
 <div class="qa" style="margin-top:18px;">
@@ -162,30 +205,30 @@ Track your cycle (with phase insights), log workouts, count macros, journal, and
 </details>
 <details>
 <summary>How does the 7-day free trial work?</summary>
-<div class="answer">You get full access for 7 days. After that, the app will prompt you to subscribe through the Apple App Store to continue.</div>
+<div class="answer">You get full access for 7 days. After that, subscribe through the Apple App Store to continue.</div>
 </details>
 <details>
 <summary>Who is Calibi Sync for?</summary>
-<div class="answer">The app is designed for users <strong>aged 16+</strong> who want to track cycles, workouts, macros, and mindset, privately.</div>
+<div class="answer">The app is designed for users <strong>aged 16+</strong> who want private cycle, workout, macro, and mindset tracking.</div>
 </details>
 <details>
 <summary>What does “Face ID + privacy mode” mean?</summary>
-<div class="answer">Your progress gallery can be locked with Face ID. Privacy mode hides thumbnails until unlocked so others can’t peek.</div>
+<div class="answer">Your progress gallery can be locked with Face ID; privacy mode hides thumbnails until unlocked.</div>
 </details>
 <details>
 <summary>Can I delete my data?</summary>
-<div class="answer">Yes. You can delete your account in the app, which removes your data from our active systems immediately.</div>
+<div class="answer">Yes. Delete your account in the app to remove your data from our active systems immediately.</div>
 </details>
 <details>
 <summary>Do you sell my data?</summary>
-<div class="answer">No. We do not sell personal data. See our Privacy Policy below for details.</div>
+<div class="answer">No. We do not sell personal data. See the Privacy Policy for details.</div>
 </details>
 </div>
 </div>
 </section>
 
 <!-- PRIVACY -->
-<section id="privacy" class="section" style="background:#fff;">
+<section id="privacy" class="section">
 <div class="container card">
 <h1>Privacy Policy</h1>
 <p><strong>Effective:</strong> October 2025</p>
@@ -226,9 +269,9 @@ Track your cycle (with phase insights), log workouts, count macros, journal, and
 
 <!-- FOOTER -->
 <footer class="footer">
-<div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+<div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
 <span>© {year} Calibi Sync — iOS only • 16+</span>
-<nav style="display:flex;gap:16px;">
+<nav style="display:flex; gap:16px;">
 <a href="#features">Features</a>
 <a href="#pricing">Pricing</a>
 <a href="#faq">FAQ</a>
