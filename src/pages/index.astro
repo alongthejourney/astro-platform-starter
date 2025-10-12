@@ -1,4 +1,4 @@
---
+---
 const year = new Date().getFullYear();
 ---
 <html lang="en">
@@ -12,10 +12,7 @@ const year = new Date().getFullYear();
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
-rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <style>
 :root {
 --bg:#FFF7F4;
@@ -47,25 +44,29 @@ border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
 .hero-img{width:100%;max-width:520px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
 .tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);
 border-radius:999px;font-weight:600;font-size:14px;}
+#privacy,#terms{padding:64px 0;background:#fff;}
+#privacy h1,#terms h1{font-size:32px;margin-bottom:12px;}
+#privacy p,#terms p,#privacy li,#terms li{line-height:1.7;color:var(--brown2);}
 </style>
 </head>
 
 <body>
 <!-- HEADER -->
 <header class="container" style="padding:18px 0;display:flex;align-items:center;justify-content:space-between;">
-<a href="/" style="display:flex;gap:10px;align-items:center;">
+<a href="#top" style="display:flex;gap:10px;align-items:center;">
 <img src="/images/logo.svg" alt="Calibi Sync" width="32" height="32" />
 <strong>Calibi Sync</strong>
 </a>
 <nav style="display:flex;gap:18px;">
 <a href="#features">Features</a>
 <a href="#pricing">Pricing</a>
-<a href="#contact">Contact</a>
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
 </nav>
 </header>
 
 <!-- HERO -->
-<section class="section">
+<section id="top" class="section">
 <div class="container" style="display:grid;gap:28px;align-items:center;">
 <div>
 <span class="tag">New • Live Workout Mode</span>
@@ -122,10 +123,72 @@ Track your cycle, workouts, and energy with Calibi Sync — your all-in-one well
 </section>
 
 <!-- WAITLIST CTA -->
-<section id="contact" class="section" style="background:var(--pink);">
+<section id="waitlist" class="section" style="background:var(--pink);">
 <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
 <div>
 <h2 style="font-size:32px;">Be first to know when we launch</h2>
 <p style="color:var(--brown);">Join the waitlist and get early access.</p>
 </div>
-<form name="waitlist" method="POST" data-netlify="
+<form name="waitlist" method="POST" data-netlify="true" class="card"
+style="display:flex;gap:10px;background:#fff;">
+<input type="hidden" name="form-name" value="waitlist" />
+<input name="email" type="email" required placeholder="Enter your email"
+style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240px;">
+<button class="btn btn-primary" type="submit">Join</button>
+</form>
+</div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+<div class="container card">
+<h1>Privacy Policy</h1>
+<p><strong>Effective:</strong> October 2025</p>
+<p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
+<h2>Information We Collect</h2>
+<ul>
+<li>Account info (email, password, preferences).</li>
+<li>Wellness logs (cycle dates, workouts, notes).</li>
+<li>Photos (optional, private storage).</li>
+<li>Device/usage analytics and subscription status.</li>
+</ul>
+<h2>How We Use Data</h2>
+<p>To provide app features, maintain accounts, and improve performance. We never sell data.</p>
+<h2>Deletion</h2>
+<p>When you delete your account, all data is permanently deleted from active systems immediately, and removed from encrypted backups through rotation.</p>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:privacy@calibisync.com">privacy@calibisync.com</a></p>
+</div>
+</section>
+
+<!-- TERMS OF SERVICE -->
+<section id="terms">
+<div class="container card">
+<h1>Terms of Service</h1>
+<p><strong>Effective:</strong> October 2025</p>
+<h2>Acceptance</h2>
+<p>By using Calibi Sync, you agree to these Terms and our Privacy Policy.</p>
+<h2>Health Disclaimer</h2>
+<p>Calibi Sync provides wellness tracking and insights for informational purposes only. It is not a substitute for medical advice.</p>
+<h2>Billing</h2>
+<p>Premium features are handled through Apple/Google billing via RevenueCat. Cancel anytime through your app store account.</p>
+<h2>Account Deletion</h2>
+<p>You may delete your account anytime. Data is removed from our systems immediately and securely.</p>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:support@calibisync.com">support@calibisync.com</a></p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+<span>© {year} Calibi Sync</span>
+<nav style="display:flex;gap:16px;">
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+<a href="#waitlist">Contact</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>
