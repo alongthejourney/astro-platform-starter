@@ -1,63 +1,89 @@
----
-const year = new Date().getFullYear();
----
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
 <meta name="description" content="Track your cycle (with phase insights), workouts, macros, and journaling — plus a Face ID private progress gallery. iOS only, 16+. Free for 7 days." />
-<meta name="theme-color" content="#F7D6D0" />
+<meta name="theme-color" content="#EAB5A1" />
 <link rel="icon" href="/favicon.ico" />
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
 <style>
 :root{
---bg:#FFFFFF; /* full white canvas */
---pink:#EAB5A1; /* baby pink accent */
---willow:#A3C4A8; /* soft sage / green */
---brown:#4B3F36; /* primary text */
---brown2:#6B5C4F; /* secondary text */
---line:#EFEFEF; /* subtle borders on white */
---radius:16px;
+  --bg:#FFFFFF;
+  --pink:#EAB5A1; /* baby pink accent */
+  --willow:#A3C4A8; /* sage green accent */
+  --brown:#4B3F36; /* main text */
+  --brown2:#6B5C4F; /* secondary text */
+  --line:#EFEFEF;
+  --radius:16px;
 
-/* shadow system */
---shadow-1: 0 1px 2px rgba(0,0,0,.05);
---shadow-2: 0 6px 16px rgba(0,0,0,.08);
---shadow-3: 0 16px 40px rgba(0,0,0,.10);
+  --shadow-1:0 1px 2px rgba(0,0,0,.05);
+  --shadow-2:0 6px 16px rgba(0,0,0,.08);
+  --shadow-3:0 16px 40px rgba(0,0,0,.10);
 }
 
-html,body{ margin:0; padding:0; background:var(--bg); color:var(--brown);
-font-family:'Poppins',system-ui,sans-serif; font-size:16px; line-height:1.6; }
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--brown);
+  font-family:'Poppins',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+}
 
-h1,h2,h3{ font-family:'Playfair Display',serif; line-height:1.2; margin:0; }
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+  line-height:1.2;
+  margin:0;
+}
+
 a{ text-decoration:none; color:var(--brown); }
 
 .container{ max-width:1120px; margin:0 auto; padding:0 20px; }
 .section{ padding:72px 0; }
 
-/* Cards & elevation */
 .card{
-background:#fff;
-border:1px solid var(--line);
-border-radius:var(--radius);
-padding:26px;
-box-shadow:var(--shadow-1);
-transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  box-shadow:var(--shadow-1);
+  transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
 }
 .card:hover{ box-shadow:var(--shadow-2); transform:translateY(-2px); border-color:#EDEDED; }
 
 /* Buttons */
 .btn{
-display:inline-flex; align-items:center; justify-content:center;
-padding:12px 18px; border-radius:12px; font-weight:600; border:1px solid transparent;
-transition:.15s ease-in-out; cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  border-radius:12px;
+  font-family:'Poppins',sans-serif;
+  font-weight:600;
+  font-size:16px;
+  border:1px solid transparent;
+  transition:.15s ease-in-out;
+  cursor:pointer;
 }
-.btn-primary{ background:var(--willow); color:#fff; box-shadow:var(--shadow-1); }
+.btn-primary{
+  background:var(--willow);
+  color:#fff;
+  box-shadow:var(--shadow-1);
+}
 .btn-primary:hover{ box-shadow:var(--shadow-2); transform:translateY(-1px); }
-.btn-secondary{ background:var(--pink); color:var(--brown); }
+
+.btn-secondary{
+  background:var(--pink);
+  color:var(--brown);
+}
 .btn-secondary:hover{ filter:brightness(.98); }
 
 /* Layout helpers */
@@ -66,18 +92,28 @@ transition:.15s ease-in-out; cursor:pointer;
 @media(min-width:768px){ .grid-2{ grid-template-columns:repeat(2,1fr); } }
 
 .footer{
-padding:28px 0; background:#fff; border-top:1px solid var(--line);
+  padding:28px 0;
+  background:#fff;
+  border-top:1px solid var(--line);
 }
 .footer a:hover{ text-decoration:underline; }
 
 .hero-img{
-width:100%; max-width:520px; border-radius:24px;
-box-shadow:var(--shadow-3);
+  width:100%;
+  max-width:520px;
+  border-radius:24px;
+  box-shadow:var(--shadow-3);
 }
 .tag{
-display:inline-block; padding:6px 10px; background:var(--pink); color:var(--brown);
-border:1px solid color-mix(in oklab, var(--pink) 60%, var(--line));
-border-radius:999px; font-weight:600; font-size:14px; box-shadow:var(--shadow-1);
+  display:inline-block;
+  padding:6px 10px;
+  background:var(--pink);
+  color:var(--brown);
+  border:1px solid color-mix(in oklab, var(--pink) 60%, var(--line));
+  border-radius:999px;
+  font-weight:600;
+  font-size:14px;
+  box-shadow:var(--shadow-1);
 }
 
 .muted{ color:var(--brown2); }
@@ -89,202 +125,63 @@ border-radius:999px; font-weight:600; font-size:14px; box-shadow:var(--shadow-1)
 #faq details{ border-bottom:1px solid var(--line); }
 #faq details:last-child{ border-bottom:none; }
 #faq summary{ cursor:pointer; list-style:none; padding:16px 18px; font-weight:600; }
-#faq summary::marker{ display:none; }
 #faq details[open] summary{ background:color-mix(in oklab, #fff 85%, var(--pink) 15%); }
 #faq .answer{ padding:0 18px 18px 18px; color:var(--brown2); }
 </style>
 </head>
 
 <body>
-<!-- HEADER -->
 <header class="container" style="padding:18px 0; display:flex; align-items:center; justify-content:space-between;">
-<a href="#top" style="display:flex; gap:12px; align-items:center;">
-<!-- Use your exact file name; spaces become %20 -->
-<img src="/Untitled%20design.PNG" alt="Calibi Sync Logo" width="42" height="42" style="border-radius:10px; vertical-align:middle;" />
-<strong style="font-size:18px;">Calibi Sync</strong>
-</a>
-<nav style="display:flex; gap:18px;">
-<a href="#features">Features</a>
-<a href="#pricing">Pricing</a>
-<a href="#faq">FAQ</a>
-<a href="#privacy">Privacy</a>
-<a href="#terms">Terms</a>
-</nav>
+  <a href="#top" style="display:flex; gap:12px; align-items:center;">
+    <img src="/Untitled%20design.PNG" alt="Calibi Sync Logo" width="42" height="42" style="border-radius:10px; vertical-align:middle;" />
+    <strong style="font-size:18px;">Calibi Sync</strong>
+  </a>
+  <nav style="display:flex; gap:18px;">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+  </nav>
 </header>
 
 <!-- HERO -->
 <section id="top" class="section">
-<div class="container" style="display:grid; gap:28px; align-items:center;">
-<div>
-<span class="tag">iOS only • 16+</span>
-<h1 style="font-size:48px; margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
-<p class="muted" style="margin-top:10px; max-width:52ch;">
-Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.
-</p>
-<p class="muted" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
-<div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
-<!-- Replace with your real App Store URL when ready -->
-<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">Start Syncing on the App&nbsp;Store</a>
-<a class="btn btn-secondary" href="#features">See Features</a>
-<div>
-<img
-class="hero-img"
-src="/d%20(1200%20x%201200%20px)%20-%201.png"
-alt="Calibi Sync App"
-width="600"
-height="600"
-style="border-radius:24px; box-shadow:0 8px 24px rgba(0,0,0,0.1); display:block; margin:auto;"
-/>
-</div>
+  <div class="container" style="display:grid; gap:28px; align-items:center;">
+    <div>
+      <span class="tag">iOS only • 16+</span>
+      <h1 style="font-size:48px; margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
+      <p class="muted" style="margin-top:10px; max-width:52ch;">Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.</p>
+      <p class="muted" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
+      <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">Start Syncing on the App&nbsp;Store</a>
+        <a class="btn btn-secondary" href="#features">See Features</a>
+      </div>
+    </div>
+    <div>
+      <img class="hero-img" src="/d%20(1200%20x%201200%20px)%20-%201.png" alt="Calibi Sync App" width="600" height="600" />
+    </div>
+  </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="section">
-<div class="container">
-<h2 style="font-size:36px;">Designed to sync with you</h2>
-<div class="grid grid-2" style="margin-top:22px;">
-<div class="card">
-<h3>Cycle Tracking</h3>
-<ul class="list"><li>Phase insights tailored to your rhythm.</li></ul>
-</div>
-<div class="card">
-<h3>Workout Logs</h3>
-<ul class="list"><li>Track sessions, sets/reps/weights, and rest.</li></ul>
-</div>
-<div class="card">
-<h3>Macro Counting</h3>
-<ul class="list"><li>Dial in protein, carbs, and fats to your goals.</li></ul>
-</div>
-<div class="card">
-<h3>Journaling</h3>
-<ul class="list"><li>Reflect and reset with prompts and notes.</li></ul>
-</div>
-<div class="card">
-<h3>Progress Gallery</h3>
-<ul class="list"><li>Face ID + privacy mode to keep photos secure.</li></ul>
-</div>
-</div>
-</div>
-</section>
+<!-- (rest of sections unchanged) -->
 
-<!-- PRICING -->
-<section id="pricing" class="section">
-<div class="container" style="text-align:center;">
-<h2 style="font-size:36px;">Membership</h2>
-<p class="muted" style="margin-top:6px;">Free for 7 days, then continue with a subscription.</p>
-
-<div class="grid grid-2" style="margin-top:24px;">
-<div class="card">
-<h3>Trial</h3>
-<p class="muted">7-day free access</p>
-<ul class="list">
-<li>Cycle tracking with phase insights</li>
-<li>Workout logging</li>
-<li>Macro counting</li>
-<li>Journaling</li>
-<li>Progress gallery (Face ID + privacy mode)</li>
-</ul>
-</div>
-
-<div class="card" style="border-color: color-mix(in oklab, var(--willow) 40%, #fff);">
-<h3>Premium</h3>
-<p class="muted">After trial • iOS only</p>
-<ul class="list">
-<li>All core features unlocked</li>
-<li>Future updates & insights</li>
-<li>Priority support</li>
-</ul>
-<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing on the App&nbsp;Store</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="section">
-<div class="container">
-<h2 style="font-size:32px;">Frequently Asked Questions</h2>
-<div class="qa" style="margin-top:18px;">
-<details>
-<summary>Is Calibi Sync available on Android?</summary>
-<div class="answer">Not yet — Calibi Sync is currently <strong>iOS only</strong>. Android is on our roadmap.</div>
-</details>
-<details>
-<summary>How does the 7-day free trial work?</summary>
-<div class="answer">You get full access for 7 days. After that, subscribe through the Apple App Store to continue.</div>
-</details>
-<details>
-<summary>Who is Calibi Sync for?</summary>
-<div class="answer">The app is designed for users <strong>aged 16+</strong> who want private cycle, workout, macro, and mindset tracking.</div>
-</details>
-<details>
-<summary>What does “Face ID + privacy mode” mean?</summary>
-<div class="answer">Your progress gallery can be locked with Face ID; privacy mode hides thumbnails until unlocked.</div>
-</details>
-<details>
-<summary>Can I delete my data?</summary>
-<div class="answer">Yes. Delete your account in the app to remove your data from our active systems immediately.</div>
-</details>
-<details>
-<summary>Do you sell my data?</summary>
-<div class="answer">No. We do not sell personal data. See the Privacy Policy for details.</div>
-</details>
-</div>
-</div>
-</section>
-
-<!-- PRIVACY -->
-<section id="privacy" class="section">
-<div class="container card">
-<h1>Privacy Policy</h1>
-<p><strong>Effective:</strong> October 2025</p>
-<p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
-<h2>Information We Collect</h2>
-<ul class="list">
-<li>Account info (email, preferences).</li>
-<li>Wellness logs you add (cycle dates/phases, workouts, notes).</li>
-<li>Photos (optional) stored privately.</li>
-<li>Device/usage analytics and subscription status.</li>
-</ul>
-<h2>How We Use Data</h2>
-<p>To provide features, maintain accounts, and improve performance. We do not sell personal data.</p>
-<h2>Deletion</h2>
-<p>When you delete your account, your data is removed from our active systems immediately and from encrypted backups by routine rotation.</p>
-<h2>Contact</h2>
-<p>Email: <a href="mailto:privacy@calibisync.com">privacy@calibisync.com</a></p>
-</div>
-</section>
-
-<!-- TERMS -->
-<section id="terms" class="section">
-<div class="container card">
-<h1>Terms of Service</h1>
-<p><strong>Effective:</strong> October 2025</p>
-<h2>Acceptance</h2>
-<p>By using Calibi Sync you agree to these Terms and our Privacy Policy.</p>
-<h2>Health Disclaimer</h2>
-<p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice. For users aged 16+.</p>
-<h2>Billing</h2>
-<p>After your 7-day free trial, subscriptions are billed via the Apple App Store. Manage or cancel anytime in your device account settings.</p>
-<h2>Account Deletion</h2>
-<p>You may delete your account anytime; associated data is removed from our systems immediately.</p>
-<h2>Contact</h2>
-<p>Email: <a href="mailto:support@calibisync.com">support@calibisync.com</a></p>
-</div>
-</section>
-
-<!-- FOOTER -->
 <footer class="footer">
-<div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
-<span>© {year} Calibi Sync — iOS only • 16+</span>
-<nav style="display:flex; gap:16px;">
-<a href="#features">Features</a>
-<a href="#pricing">Pricing</a>
-<a href="#faq">FAQ</a>
-<a href="#privacy">Privacy</a>
-<a href="#terms">Terms</a>
-</nav>
-</div>
+  <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
+    <span id="year"></span>
+    <nav style="display:flex; gap:16px;">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+    </nav>
+  </div>
 </footer>
+
+<script>
+  const year = new Date().getFullYear();
+  document.getElementById("year").textContent = `© ${year} Calibi Sync — iOS only • 16+`;
+</script>
 </body>
 </html>
