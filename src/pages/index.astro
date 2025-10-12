@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
-<meta name="description" content="Track your cycle, workouts, macros, and energy with Calibi Sync — your all-in-one wellness rhythm guide." />
+<meta name="description" content="Track your cycle (with phase insights), workouts, macros, and journaling — plus a Face ID private progress gallery. Calibi Sync is iOS-only, 16+." />
 <meta name="theme-color" content="#F4C8C2" />
 <link rel="icon" href="/favicon.ico" />
 <!-- Fonts -->
@@ -15,34 +15,42 @@ const year = new Date().getFullYear();
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <style>
 :root { --bg:#FFF7F4; --pink:#F4C8C2; --willow:#A3C4A8; --brown:#4B3F36; --brown2:#6B5C4F; --radius:16px; }
-html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);
+font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
 h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;margin:0;}
 a{text-decoration:none;color:var(--brown);}
 .container{max-width:1120px;margin:0 auto;padding:0 20px;}
 .section{padding:64px 0;}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;
+border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
 .btn-primary{background:var(--willow);color:#fff;} .btn-primary:hover{opacity:.9;}
 .btn-secondary{background:var(--pink);color:var(--brown);} .btn-secondary:hover{filter:brightness(.98);}
-.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
-.grid{display:grid;gap:16px;} .grid-2{grid-template-columns:1fr;} @media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
-.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);} .footer a:hover{text-decoration:underline;}
+.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);
+border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
+.grid{display:grid;gap:16px;}
+.grid-2{grid-template-columns:1fr;}
+@media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
+.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);}
+.footer a:hover{text-decoration:underline;}
 .hero-img{width:100%;max-width:520px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
-.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);border-radius:999px;font-weight:600;font-size:14px;}
-/* Macro UI */
-.macro-grid{display:grid;gap:14px;grid-template-columns:1fr;} @media(min-width:720px){.macro-grid{grid-template-columns:repeat(2,1fr);}}
-.field{display:flex;flex-direction:column;gap:6px;}
-.field input[type="number"], .field input[type="range"]{
-width:100%; padding:12px 14px; border:1px solid #DDD; border-radius:12px; background:#fff; color:var(--brown);
-}
+.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);
+border-radius:999px;font-weight:600;font-size:14px;}
 .note{color:var(--brown2);font-size:14px}
-.pill{display:inline-block;border-radius:999px;padding:6px 10px;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);background:#fff;cursor:pointer;}
-.pill.active{background:var(--willow);color:#fff;border-color:var(--willow);}
-.bar{height:10px;border-radius:999px;background:#eee;overflow:hidden}
-.bar > span{display:block;height:100%}
-.pct{font-weight:600;}
 #privacy,#terms{padding:64px 0;background:#fff;}
 #privacy h1,#terms h1{font-size:32px;margin-bottom:12px;}
 #privacy p,#terms p,#privacy li,#terms li{line-height:1.7;color:var(--brown2);}
+.list{margin:10px 0 0 0;padding:0;list-style:none;}
+.list li{margin:8px 0;}
+.muted{color:var(--brown2);}
+
+/* FAQ */
+#faq .qa{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);border-radius:14px;overflow:hidden;}
+#faq details{border-bottom:1px solid color-mix(in oklab,var(--willow)20%,transparent);}
+#faq details:last-child{border-bottom:none;}
+#faq summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:600;}
+#faq summary::marker{display:none;}
+#faq details[open] summary{background:color-mix(in oklab,#fff 85%, var(--willow) 15%);}
+#faq .answer{padding:0 18px 18px 18px;color:var(--brown2);}
 </style>
 </head>
 
@@ -55,8 +63,8 @@ width:100%; padding:12px 14px; border:1px solid #DDD; border-radius:12px; backgr
 </a>
 <nav style="display:flex;gap:18px;">
 <a href="#features">Features</a>
-<a href="#macros">Macros</a>
 <a href="#pricing">Pricing</a>
+<a href="#faq">FAQ</a>
 <a href="#privacy">Privacy</a>
 <a href="#terms">Terms</a>
 </nav>
@@ -66,15 +74,15 @@ width:100%; padding:12px 14px; border:1px solid #DDD; border-radius:12px; backgr
 <section id="top" class="section">
 <div class="container" style="display:grid;gap:28px;align-items:center;">
 <div>
-<span class="tag">New • Live Workout Mode</span>
+<span class="tag">iOS only • 16+</span>
 <h1 style="font-size:48px;margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
 <p style="margin-top:10px;color:var(--brown2);max-width:52ch;">
-Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — your all-in-one wellness rhythm guide.
+Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.
 </p>
+<p class="note" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
 <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
-<!-- Replace these href values with your real store links when ready -->
-<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">App&nbsp;Store</a>
-<a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=" target="_blank" rel="noopener">Google&nbsp;Play</a>
+<!-- Replace href with your real App Store link when ready -->
+<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">Start Syncing on the App&nbsp;Store</a>
 </div>
 </div>
 <div><img class="hero-img" src="/images/iphone-mock.png" alt="Calibi Sync app" /></div>
@@ -86,87 +94,25 @@ Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — you
 <div class="container">
 <h2 style="font-size:36px;">Designed to sync with you</h2>
 <div class="grid grid-2" style="margin-top:22px;">
-<div class="card"><h3>Cycle Tracking</h3><p>Know your phases and plan with confidence.</p></div>
-<div class="card"><h3>Live Workout Mode</h3><p>Track sets, reps, weight & rest timers.</p></div>
-<div class="card"><h3>Macro Tracking</h3><p>Balanced presets or custom percentages — saved on your device.</p></div>
-<div class="card"><h3>Progress Gallery</h3><p>Private photos with Face ID + privacy mode.</p></div>
-</div>
-</div>
-</section>
-
-<!-- MACRO TRACKER -->
-<section id="macros" class="section">
-<div class="container">
 <div class="card">
-<h2 style="font-size:32px;">Daily Macro Tracker</h2>
-<p class="note">Calculate grams from calories & percentages. Your last values are saved on this device.</p>
-
-<!-- Presets -->
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px;">
-<button class="pill" data-preset="balanced" title="Protein 30%, Carbs 40%, Fat 30%">Balanced</button>
-<button class="pill" data-preset="lowercarb" title="Protein 35%, Carbs 25%, Fat 40%">Lower Carb</button>
-<button class="pill" data-preset="highercarb" title="Protein 25%, Carbs 50%, Fat 25%">Higher Carb</button>
+<h3>Cycle Tracking</h3>
+<ul class="list"><li>Phase insights tailored to your rhythm.</li></ul>
 </div>
-
-<div class="macro-grid">
-<div class="field">
-<label><strong>Total Calories</strong></label>
-<input id="calories" type="number" min="0" step="10" placeholder="e.g., 2000" />
-<span class="note">We’ll split these calories across P / C / F.</span>
+<div class="card">
+<h3>Workout Logs</h3>
+<ul class="list"><li>Track sessions, sets/reps/weights, and rest.</li></ul>
 </div>
-
-<div class="field">
-<label><strong>Protein %</strong> <span class="pct" id="pPctLabel">(30%)</span></label>
-<input id="pPct" type="range" min="10" max="50" value="30" />
+<div class="card">
+<h3>Macro Counting</h3>
+<ul class="list"><li>Dial in protein, carbs, and fats to your goals.</li></ul>
 </div>
-
-<div class="field">
-<label><strong>Carbs %</strong> <span class="pct" id="cPctLabel">(40%)</span></label>
-<input id="cPct" type="range" min="10" max="70" value="40" />
+<div class="card">
+<h3>Journaling</h3>
+<ul class="list"><li>Reflect and reset with prompts and notes.</li></ul>
 </div>
-
-<div class="field">
-<label><strong>Fat %</strong> <span class="pct" id="fPctLabel">(30%)</span></label>
-<input id="fPct" type="range" min="10" max="60" value="30" />
-</div>
-</div>
-
-<p class="note" id="pctWarn" style="margin-top:8px;"></p>
-
-<!-- Visual bar -->
-<div class="bar" style="margin:16px 0 12px;">
-<span id="pBar" style="width:30%; background:#A3C4A8;"></span>
-</div>
-<div class="bar" style="margin:0 0 12px;">
-<span id="cBar" style="width:40%; background:#F4C8C2;"></span>
-</div>
-<div class="bar" style="margin:0 0 18px;">
-<span id="fBar" style="width:30%; background:#4B3F36;"></span>
-</div>
-
-<!-- Results -->
-<div class="grid grid-2">
-<div class="card" style="background:var(--bg);">
-<h3>Protein</h3>
-<p><strong id="pGrams">0</strong> g &nbsp; <span class="note" id="pCals">(0 kcal)</span></p>
-</div>
-<div class="card" style="background:var(--bg);">
-<h3>Carbs</h3>
-<p><strong id="cGrams">0</strong> g &nbsp; <span class="note" id="cCals">(0 kcal)</span></p>
-</div>
-<div class="card" style="background:var(--bg);">
-<h3>Fat</h3>
-<p><strong id="fGrams">0</strong> g &nbsp; <span class="note" id="fCals">(0 kcal)</span></p>
-</div>
-<div class="card" style="background:var(--bg);">
-<h3>Total</h3>
-<p><strong id="tCals">0</strong> kcal</p>
-</div>
-</div>
-
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-<button id="save" class="btn btn-primary" type="button">Save to this device</button>
-<button id="reset" class="btn btn-secondary" type="button">Reset</button>
+<div class="card">
+<h3>Progress Gallery</h3>
+<ul class="list"><li>Face ID + privacy mode to keep photos secure.</li></ul>
 </div>
 </div>
 </div>
@@ -176,49 +122,76 @@ Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — you
 <section id="pricing" class="section">
 <div class="container" style="text-align:center;">
 <h2 style="font-size:36px;">Membership</h2>
-<p style="color:var(--brown2);margin-top:6px;">Start free • Upgrade for deeper insights</p>
+<p class="muted" style="margin-top:6px;">Free for 7 days, then continue with a subscription.</p>
+
 <div class="grid grid-2" style="margin-top:24px;">
 <div class="card">
-<h3>Free</h3>
-<ul><li>• Cycle calendar + basic logs</li><li>• Macro calculator (on device)</li></ul>
+<h3>Trial</h3>
+<p class="muted">7-day free access</p>
+<ul class="list">
+<li>Cycle tracking with phase insights</li>
+<li>Workout logging</li>
+<li>Macro counting</li>
+<li>Journaling</li>
+<li>Progress gallery (Face ID + privacy mode)</li>
+</ul>
 </div>
+
 <div class="card" style="border-color:var(--willow);">
 <h3>Premium</h3>
-<p style="color:var(--brown2);">$14.99 / mo or $119.99 / yr</p>
-<ul>
-<li>• Live Workout Mode (sets/reps/weight + rest timer)</li>
-<li>• Progress Gallery + Face ID</li>
-<li>• Journaling & Insights</li>
+<p class="muted">After trial • iOS only</p>
+<ul class="list">
+<li>All core features unlocked</li>
+<li>Future updates & insights</li>
+<li>Priority support</li>
 </ul>
-<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing</a>
+<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing on the App&nbsp;Store</a>
 </div>
 </div>
 </div>
 </section>
 
-<!-- WAITLIST CTA -->
-<section id="waitlist" class="section" style="background:var(--pink);">
-<div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-<div>
-<h2 style="font-size:32px;">Be first to know when we launch</h2>
-<p style="color:var(--brown);">Join the waitlist and get early access.</p>
+<!-- FAQ -->
+<section id="faq" class="section" style="background:#fff;">
+<div class="container">
+<h2 style="font-size:32px;">Frequently Asked Questions</h2>
+<div class="qa" style="margin-top:18px;">
+<details>
+<summary>Is Calibi Sync available on Android?</summary>
+<div class="answer">Not yet — Calibi Sync is currently <strong>iOS only</strong>. Android is on our roadmap.</div>
+</details>
+<details>
+<summary>How does the 7-day free trial work?</summary>
+<div class="answer">You get full access for 7 days. After that, the app will prompt you to subscribe through the Apple App Store to continue.</div>
+</details>
+<details>
+<summary>Who is Calibi Sync for?</summary>
+<div class="answer">The app is designed for users <strong>aged 16+</strong> who want to track cycles, workouts, macros, and mindset, privately.</div>
+</details>
+<details>
+<summary>What does “Face ID + privacy mode” mean?</summary>
+<div class="answer">Your progress gallery can be locked with Face ID. Privacy mode hides thumbnails until unlocked so others can’t peek.</div>
+</details>
+<details>
+<summary>Can I delete my data?</summary>
+<div class="answer">Yes. You can delete your account in the app, which removes your data from our active systems immediately.</div>
+</details>
+<details>
+<summary>Do you sell my data?</summary>
+<div class="answer">No. We do not sell personal data. See our Privacy Policy below for details.</div>
+</details>
 </div>
-<form name="waitlist" method="POST" data-netlify="true" class="card" style="display:flex;gap:10px;background:#fff;">
-<input type="hidden" name="form-name" value="waitlist" />
-<input name="email" type="email" required placeholder="Enter your email" style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240px;">
-<button class="btn btn-primary" type="submit">Join</button>
-</form>
 </div>
 </section>
 
 <!-- PRIVACY -->
-<section id="privacy">
+<section id="privacy" class="section" style="background:#fff;">
 <div class="container card">
 <h1>Privacy Policy</h1>
 <p><strong>Effective:</strong> October 2025</p>
 <p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
 <h2>Information We Collect</h2>
-<ul>
+<ul class="list">
 <li>Account info (email, preferences).</li>
 <li>Wellness logs you add (cycle dates/phases, workouts, notes).</li>
 <li>Photos (optional) stored privately.</li>
@@ -234,16 +207,16 @@ Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — you
 </section>
 
 <!-- TERMS -->
-<section id="terms">
+<section id="terms" class="section">
 <div class="container card">
 <h1>Terms of Service</h1>
 <p><strong>Effective:</strong> October 2025</p>
 <h2>Acceptance</h2>
 <p>By using Calibi Sync you agree to these Terms and our Privacy Policy.</p>
 <h2>Health Disclaimer</h2>
-<p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice.</p>
+<p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice. For users aged 16+.</p>
 <h2>Billing</h2>
-<p>Premium subscriptions are billed by Apple/Google via in-app purchase. Manage or cancel in your device account settings.</p>
+<p>After your 7-day free trial, subscriptions are billed via the Apple App Store. Manage or cancel anytime in your device account settings.</p>
 <h2>Account Deletion</h2>
 <p>You may delete your account anytime; associated data is removed from our systems immediately.</p>
 <h2>Contact</h2>
@@ -254,121 +227,15 @@ Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — you
 <!-- FOOTER -->
 <footer class="footer">
 <div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
-<span>© {year} Calibi Sync</span>
+<span>© {year} Calibi Sync — iOS only • 16+</span>
 <nav style="display:flex;gap:16px;">
-<a href="#macros">Macros</a>
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#faq">FAQ</a>
 <a href="#privacy">Privacy</a>
 <a href="#terms">Terms</a>
 </nav>
 </div>
 </footer>
-
-<!-- MACRO LOGIC -->
-<script>
-(function(){
-const $ = (id)=>document.getElementById(id);
-const calories = $('calories') || (function(){
-// Create inputs if user loads page before DOM drew—(SSR safety)
-return null;
-})();
-
-const ids = ['calories','pPct','cPct','fPct','pPctLabel','cPctLabel','fPctLabel','pctWarn','pBar','cBar','fBar','pGrams','pCals','cGrams','cCals','fGrams','fCals','tCals'];
-const el = {}; ids.forEach(k=> el[k]=document.getElementById(k));
-
-function clamp(v,min,max){ return Math.min(max, Math.max(min, v)); }
-
-function loadSaved(){
-try{
-const s = JSON.parse(localStorage.getItem('cs_macros')||'{}');
-if(s.calories) el.calories.value = s.calories;
-if(s.pPct) el.pPct.value = s.pPct;
-if(s.cPct) el.cPct.value = s.cPct;
-if(s.fPct) el.fPct.value = s.fPct;
-}catch(_) {}
-syncLabels(); compute();
-}
-
-function syncLabels(){
-el.pPctLabel.textContent = '('+el.pPct.value+'%)';
-el.cPctLabel.textContent = '('+el.cPct.value+'%)';
-el.fPctLabel.textContent = '('+el.fPct.value+'%)';
-el.pBar.style.width = el.pPct.value+'%';
-el.cBar.style.width = el.cPct.value+'%';
-el.fBar.style.width = el.fPct.value+'%';
-}
-
-function compute(){
-const cal = parseFloat(el.calories.value||'0');
-let p = parseFloat(el.pPct.value||'0');
-let c = parseFloat(el.cPct.value||'0');
-let f = parseFloat(el.fPct.value||'0');
-const sum = p+c+f;
-if(sum !== 100){
-el.pctWarn.textContent = 'Tip: Protein + Carbs + Fat should total 100%. (Current: '+sum+'%)';
-// Normalize softly so it still computes:
-p = p/sum*100; c = c/sum*100; f = f/sum*100;
-} else { el.pctWarn.textContent=''; }
-
-const pCals = Math.round(cal*(p/100));
-const cCals = Math.round(cal*(c/100));
-const fCals = Math.round(cal*(f/100));
-
-const pGrams = Math.round(pCals/4);
-const cGrams = Math.round(cCals/4);
-const fGrams = Math.round(fCals/9);
-
-el.pGrams.textContent = isFinite(pGrams)?pGrams:0; el.pCals.textContent='('+ (isFinite(pCals)?pCals:0) +' kcal)';
-el.cGrams.textContent = isFinite(cGrams)?cGrams:0; el.cCals.textContent='('+ (isFinite(cCals)?cCals:0) +' kcal)';
-el.fGrams.textContent = isFinite(fGrams)?fGrams:0; el.fCals.textContent='('+ (isFinite(fCals)?fCals:0) +' kcal)';
-el.tCals.textContent = isFinite(cal)?cal:0;
-}
-
-function save(){
-const s = {
-calories: el.calories.value,
-pPct: el.pPct.value,
-cPct: el.cPct.value,
-fPct: el.fPct.value
-};
-localStorage.setItem('cs_macros', JSON.stringify(s));
-}
-
-function reset(){
-el.calories.value = '';
-el.pPct.value = 30; el.cPct.value = 40; el.fPct.value = 30;
-syncLabels(); compute(); localStorage.removeItem('cs_macros');
-}
-
-// Presets
-function applyPreset(name){
-const map = {
-balanced: {p:30,c:40,f:30},
-lowercarb:{p:35,c:25,f:40},
-highercarb:{p:25,c:50,f:25}
-};
-const v = map[name];
-if(!v) return;
-el.pPct.value = v.p; el.cPct.value = v.c; el.fPct.value = v.f;
-document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-document.querySelector('.pill[data-preset="'+name+'"]').classList.add('active');
-syncLabels(); compute();
-}
-
-// Bind events
-if(el.calories){
-['input','change'].forEach(evt=>{
-el.calories.addEventListener(evt, compute);
-el.pPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
-el.cPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
-el.fPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
-});
-document.getElementById('save').addEventListener('click', ()=>{ save(); compute(); });
-document.getElementById('reset').addEventListener('click', reset);
-document.querySelectorAll('.pill').forEach(b=> b.addEventListener('click', ()=>applyPreset(b.dataset.preset)));
-// init
-loadSaved(); applyPreset('balanced');
-}
-})();
-</script>
 </body>
 </html>
