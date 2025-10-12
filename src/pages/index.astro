@@ -78,13 +78,20 @@ a{ text-decoration:none; color:var(--brown); }
   color:#fff;
   box-shadow:var(--shadow-1);
 }
-.btn-primary:hover{ box-shadow:var(--shadow-2); transform:translateY(-1px); }
-
+.btn-primary:hover{
+  box-shadow:var(--shadow-2);
+  transform:translateY(-1px);
+}
 .btn-secondary{
   background:var(--pink);
   color:var(--brown);
+  box-shadow:var(--shadow-1);
 }
-.btn-secondary:hover{ filter:brightness(.98); }
+.btn-secondary:hover{
+  box-shadow:var(--shadow-2);
+  transform:translateY(-1px);
+  filter:brightness(.98);
+}
 
 /* Layout helpers */
 .grid{ display:grid; gap:18px; }
@@ -131,6 +138,7 @@ a{ text-decoration:none; color:var(--brown); }
 </head>
 
 <body>
+<!-- HEADER -->
 <header class="container" style="padding:18px 0; display:flex; align-items:center; justify-content:space-between;">
   <a href="#top" style="display:flex; gap:12px; align-items:center;">
     <img src="/Untitled%20design.PNG" alt="Calibi Sync Logo" width="42" height="42" style="border-radius:10px; vertical-align:middle;" />
@@ -164,8 +172,142 @@ a{ text-decoration:none; color:var(--brown); }
   </div>
 </section>
 
-<!-- (rest of sections unchanged) -->
+<!-- FEATURES -->
+<section id="features" class="section">
+  <div class="container">
+    <h2 style="font-size:36px;">Designed to sync with you</h2>
+    <div class="grid grid-2" style="margin-top:22px;">
+      <div class="card">
+        <h3>Cycle Tracking</h3>
+        <ul class="list"><li>Phase insights tailored to your rhythm.</li></ul>
+      </div>
+      <div class="card">
+        <h3>Workout Logs</h3>
+        <ul class="list"><li>Track sessions, sets/reps/weights, and rest.</li></ul>
+      </div>
+      <div class="card">
+        <h3>Macro Counting</h3>
+        <ul class="list"><li>Dial in protein, carbs, and fats to your goals.</li></ul>
+      </div>
+      <div class="card">
+        <h3>Journaling</h3>
+        <ul class="list"><li>Reflect and reset with prompts and notes.</li></ul>
+      </div>
+      <div class="card">
+        <h3>Progress Gallery</h3>
+        <ul class="list"><li>Face ID + privacy mode to keep photos secure.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="container" style="text-align:center;">
+    <h2 style="font-size:36px;">Membership</h2>
+    <p class="muted" style="margin-top:6px;">Free for 7 days, then continue with a subscription.</p>
+
+    <div class="grid grid-2" style="margin-top:24px;">
+      <div class="card">
+        <h3>Trial</h3>
+        <p class="muted">7-day free access</p>
+        <ul class="list">
+          <li>Cycle tracking with phase insights</li>
+          <li>Workout logging</li>
+          <li>Macro counting</li>
+          <li>Journaling</li>
+          <li>Progress gallery (Face ID + privacy mode)</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-color: color-mix(in oklab, var(--willow) 40%, #fff);">
+        <h3>Premium</h3>
+        <p class="muted">After trial • iOS only</p>
+        <ul class="list">
+          <li>All core features unlocked</li>
+          <li>Future updates & insights</li>
+          <li>Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing on the App&nbsp;Store</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <h2 style="font-size:32px;">Frequently Asked Questions</h2>
+    <div class="qa" style="margin-top:18px;">
+      <details>
+        <summary>Is Calibi Sync available on Android?</summary>
+        <div class="answer">Not yet — Calibi Sync is currently <strong>iOS only</strong>. Android is on our roadmap.</div>
+      </details>
+      <details>
+        <summary>How does the 7-day free trial work?</summary>
+        <div class="answer">You get full access for 7 days. After that, subscribe through the Apple App Store to continue.</div>
+      </details>
+      <details>
+        <summary>Who is Calibi Sync for?</summary>
+        <div class="answer">The app is designed for users <strong>aged 16+</strong> who want private cycle, workout, macro, and mindset tracking.</div>
+      </details>
+      <details>
+        <summary>What does “Face ID + privacy mode” mean?</summary>
+        <div class="answer">Your progress gallery can be locked with Face ID; privacy mode hides thumbnails until unlocked.</div>
+      </details>
+      <details>
+        <summary>Can I delete my data?</summary>
+        <div class="answer">Yes. Delete your account in the app to remove your data from our active systems immediately.</div>
+      </details>
+      <details>
+        <summary>Do you sell my data?</summary>
+        <div class="answer">No. We do not sell personal data. See the Privacy Policy for details.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" class="section">
+  <div class="container card">
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective:</strong> October 2025</p>
+    <p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
+    <h2>Information We Collect</h2>
+    <ul class="list">
+      <li>Account info (email, preferences).</li>
+      <li>Wellness logs you add (cycle dates/phases, workouts, notes).</li>
+      <li>Photos (optional) stored privately.</li>
+      <li>Device/usage analytics and subscription status.</li>
+    </ul>
+    <h2>How We Use Data</h2>
+    <p>To provide features, maintain accounts, and improve performance. We do not sell personal data.</p>
+    <h2>Deletion</h2>
+    <p>When you delete your account, your data is removed from our active systems immediately and from encrypted backups by routine rotation.</p>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:privacy@calibisync.com">privacy@calibisync.com</a></p>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section id="terms" class="section">
+  <div class="container card">
+    <h1>Terms of Service</h1>
+    <p><strong>Effective:</strong> October 2025</p>
+    <h2>Acceptance</h2>
+    <p>By using Calibi Sync you agree to these Terms and our Privacy Policy.</p>
+    <h2>Health Disclaimer</h2>
+    <p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice. For users aged 16+.</p>
+    <h2>Billing</h2>
+    <p>After your 7-day free trial, subscriptions are billed via the Apple App Store. Manage or cancel anytime in your device account settings.</p>
+    <h2>Account Deletion</h2>
+    <p>You may delete your account anytime; associated data is removed from our systems immediately.</p>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:support@calibisync.com">support@calibisync.com</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
     <span id="year"></span>
