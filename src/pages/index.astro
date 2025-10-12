@@ -13,7 +13,7 @@
 
 <style>
 :root{
---pink:#E6A9A7; /* pink (cards/shadows) */
+--pink:#EAB5A1; /* blush accent (cards/shadows) */
 --sage:#A3C4A8; /* primary accent (buttons, FAQ highlights) */
 --text:#2B2B2B; /* brown heading/body */
 --text-2:#4A4A4A; /* secondary copy */
@@ -32,6 +32,7 @@ font:16px/1.6 "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
 -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 img{max-width:100%;height:auto;display:block}
+a{color:var(--text); text-decoration:none}
 
 /* Layout */
 .container{max-width:var(--container); margin:0 auto; padding:0 20px;}
@@ -39,19 +40,21 @@ header{
 background:#fff; border-bottom:1px solid rgba(0,0,0,.06);
 position:sticky; top:0; z-index:10;
 }
-.nav{display:flex; align-items:center; justify-content:space-between; height:78px;}
-.brand{
-display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
-}
-.brand img{width:40px; height:40px; border-radius:10px;}
-.brand-title{
-font-weight:800; letter-spacing:-.01em;
-font-size: clamp(20px, 2.2vw, 26px); /* bigger brand name */
-line-height:1;
-}
-.menu{display:flex; gap:20px; align-items:center;}
-.menu a{color:var(--text); text-decoration:none; font-weight:600;}
-.menu a:hover{opacity:.85}
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; height:78px; }
+.brand{ display:flex; align-items:center; gap:12px; flex:1 1 auto; min-width:0; }
+.brand img{ width:40px; height:40px; border-radius:10px; }
+.brand-title{ font-weight:800; letter-spacing:-.01em; font-size: clamp(20px, 2.2vw, 26px); line-height:1; }
+.menu{ display:flex; gap:20px; align-items:center; flex:0 0 auto; }
+.menu a{ font-weight:600; white-space:nowrap; }
+.menu a:hover{ opacity:.85 }
+
+/* Mobile toggle */
+.menu-toggle{ display:none; border:0; background:#fff; font-size:26px; line-height:1; padding:8px; border-radius:8px; }
+.menu-toggle:focus-visible{ outline:3px solid rgba(163,196,168,.55); outline-offset:2px; }
+
+/* Mobile drawer */
+.mobile-menu{ display:flex; flex-direction:column; gap:12px; padding:12px 20px; border-top:1px solid rgba(0,0,0,.06); background:#fff; }
+.mobile-menu a{ padding:10px 0; font-weight:700; }
 
 /* Hero */
 .hero{padding:56px 0 28px}
@@ -62,28 +65,26 @@ background:rgba(163,196,168,.12);
 border:1px solid rgba(163,196,168,.25);
 font-weight:600; font-size:.9rem; color:var(--text);
 }
-.hero-grid{
-display:grid; gap:32px; grid-template-columns:1.1fr .9fr; align-items:center;
-}
+.hero-grid{ display:grid; gap:32px; grid-template-columns:1.1fr .9fr; align-items:center; }
 h1{
 font-family:"Playfair Display",serif;
 font-size:clamp(36px,5vw,58px);
 line-height:1.1; margin:16px 0 12px; letter-spacing:-.015em; color:var(--text);
 }
-.lead{color:var(--text-2); margin:0 0 16px;}
-.cta{display:flex; gap:12px; flex-wrap:wrap}
+.lead{ color:var(--text-2); margin:0 0 16px; }
+.cta{ display:flex; gap:12px; flex-wrap:wrap }
 
-/* Buttons (both solid sage) */
+/* Buttons (single primary CTA, solid sage) */
 .btn{
 display:inline-flex; align-items:center; justify-content:center;
 border:none; border-radius:999px; padding:14px 20px;
-font-weight:700; text-decoration:none; color:#fff;
-background:var(--sage); box-shadow:0 6px 18px rgba(163,196,168,.32);
+font-weight:700; color:#fff; background:var(--sage);
+box-shadow:0 6px 18px rgba(163,196,168,.32);
 transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
 }
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-.btn:focus-visible{outline:3px solid rgba(163,196,168,.55); outline-offset:2px}
+.btn:hover{ transform:translateY(-1px) }
+.btn:active{ transform:translateY(0) }
+.btn:focus-visible{ outline:3px solid rgba(163,196,168,.55); outline-offset:2px }
 
 /* Hero visuals */
 .hero-visual{
@@ -109,7 +110,7 @@ border-radius:2px;
 }
 
 /* Sections */
-section{padding:44px 0}
+section{ padding:44px 0 }
 h2{
 font-family:"Playfair Display",serif;
 font-size:clamp(24px,3.6vw,36px);
@@ -117,14 +118,14 @@ margin:0 0 12px; color:var(--text);
 }
 
 /* Features */
-.features{display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));}
+.features{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
 .card{
 background:#fff; padding:20px; border-radius:var(--radius);
 border:1px solid rgba(234,181,161,.40);
 box-shadow:0 8px 24px rgba(234,181,161,.18);
 }
-.card h3{margin:0 0 6px; font-size:1.05rem; color:var(--text);}
-.card p{margin:0; color:var(--text-2);}
+.card h3{ margin:0 0 6px; font-size:1.05rem; color:var(--text); }
+.card p{ margin:0; color:var(--text-2); }
 .strip{
 margin-top:20px; padding:18px; color:var(--text-2);
 border:1px solid rgba(234,181,161,.40); border-radius:14px;
@@ -132,38 +133,43 @@ box-shadow:0 10px 28px rgba(234,181,161,.16);
 }
 
 /* FAQ (sage theme, no pink outlines) */
-.faq{padding:56px 0; border-top:1px solid rgba(0,0,0,.06);}
-.faq-grid{max-width:900px; margin:12px auto 0; display:grid; gap:12px;}
+.faq{ padding:56px 0; border-top:1px solid rgba(0,0,0,.06); }
+.faq-grid{ max-width:900px; margin:12px auto 0; display:grid; gap:12px; }
 details{
-border-radius:14px; background:rgba(163,196,168,.10); /* sage wash */
-border:1px solid rgba(163,196,168,.30); /* sage border */
+border-radius:14px; background:rgba(163,196,168,.10);
+border:1px solid rgba(163,196,168,.30);
 padding:14px 16px;
 transition:box-shadow .15s ease, background .15s ease;
 }
-details[open]{background:rgba(163,196,168,.14); box-shadow:0 10px 26px rgba(163,196,168,.18);}
+details[open]{ background:rgba(163,196,168,.14); box-shadow:0 10px 26px rgba(163,196,168,.18); }
 summary{
 list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
 font-weight:700; color:var(--text);
 }
-summary::-webkit-details-marker{display:none}
+summary::-webkit-details-marker{ display:none }
 .faq-qicon{
 width:28px; height:28px; border-radius:999px; flex:0 0 28px;
 display:grid; place-items:center; background:rgba(163,196,168,.22);
 color:#1d3a29; font-weight:800; font-size:.9rem;
 }
-.faq-a{margin:10px 2px 2px; color:var(--text-2);}
+.faq-a{ margin:10px 2px 2px; color:var(--text-2); }
 
 /* Policies */
-.policy{padding:56px 0; border-top:1px solid rgba(0,0,0,.06);}
-.policy p{max-width:900px; margin:0 auto 16px; color:var(--text-2);}
+.policy{ padding:56px 0; border-top:1px solid rgba(0,0,0,.06); }
+.policy p{ max-width:900px; margin:0 auto 16px; color:var(--text-2); }
 
 /* Footer */
-footer{padding:32px 0 48px; border-top:1px solid rgba(0,0,0,.06); color:var(--text-2);}
-footer a{color:var(--text); text-decoration:none; font-weight:600}
-footer a:hover{opacity:.85}
+footer{ padding:32px 0 48px; border-top:1px solid rgba(0,0,0,.06); color:var(--text-2); }
+footer a{ font-weight:600 }
+footer a:hover{ opacity:.85 }
 
-/* Responsive */
-@media (max-width: 900px){ .hero-grid{grid-template-columns:1fr} }
+/* Breakpoints */
+@media (max-width: 900px){ .hero-grid{ grid-template-columns:1fr } }
+@media (max-width: 820px){ .brand-title{ font-size:clamp(18px,5vw,22px); } }
+@media (max-width: 680px){
+.menu{ display:none; } /* hide inline menu on small screens */
+.menu-toggle{ display:inline-flex; }
+}
 </style>
 </head>
 <body>
@@ -171,10 +177,15 @@ footer a:hover{opacity:.85}
 <header>
 <div class="container nav">
 <a class="brand" href="#">
-<!-- Small header logo -->
-<img src="d%20(40%20x%2040%20px)%20-%201.png" alt="Calibi Sync logo">
+<!-- Header logo (your 40×40 file with URL-encoded name) -->
+<img src="Untitled%20design.PNG" alt="Calibi Sync logo">
 <span class="brand-title">Calibi Sync</span>
 </a>
+
+<!-- Mobile hamburger -->
+<button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">☰</button>
+
+<!-- Desktop menu -->
 <nav class="menu">
 <a href="#features">Features</a>
 <a href="#faq">FAQ</a>
@@ -183,6 +194,15 @@ footer a:hover{opacity:.85}
 <a href="#terms">Terms</a>
 </nav>
 </div>
+
+<!-- Mobile drawer -->
+<nav id="mobile-menu" class="mobile-menu" hidden>
+<a href="#features">Features</a>
+<a href="#faq">FAQ</a>
+<a href="#pricing">Pricing</a>
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+</nav>
 </header>
 
 <!-- Hero -->
@@ -196,16 +216,14 @@ footer a:hover{opacity:.85}
 <p class="lead">Free 7-day trial, then subscribe to continue.</p>
 <div class="cta">
 <a class="btn" href="https://apps.apple.com/">Start Syncing on the App Store</a>
-<a class="btn" href="#features">See Features</a>
 </div>
 <div class="divider"></div>
 </div>
 
-<!-- Large hero logo with soft gradient backdrop -->
+<!-- Large hero logo (your 1200×1200 file with URL-encoded name) -->
 <div class="hero-visual">
 <div class="visual-inner">
-<!-- Replace with your 1200×1200 master logo -->
-<img src="/d%20(1200%20x%201200%20px)%20-%201.png" alt="Calibi Sync brand mark">
+<img src="d%20(1200%20x%201200%20px)%20-%201.png" alt="Calibi Sync brand mark">
 </div>
 </div>
 </div>
@@ -228,7 +246,7 @@ footer a:hover{opacity:.85}
 </div>
 </section>
 
-<!-- FAQ (sage theme, no pink outline) -->
+<!-- FAQ (sage theme, no pink outlines) -->
 <section class="faq" id="faq">
 <div class="container">
 <h2>FAQ</h2>
@@ -281,7 +299,7 @@ footer a:hover{opacity:.85}
 <footer>
 <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
 <div style="display:flex; align-items:center; gap:10px;">
-<img src="Untitled%20design.PNG" width="43" height="42" alt="" style="border-radius:6px">
+<img src="d%20(40%20x%2040%20px)%20-%201.png" width="28" height="28" alt="" style="border-radius:6px">
 <strong>Calibi Sync</strong>
 </div>
 <div style="display:flex; gap:16px; flex-wrap:wrap;">
@@ -295,9 +313,22 @@ footer a:hover{opacity:.85}
 </footer>
 
 <script>
+// Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// OPTIONAL: Single-open FAQ (uncomment to allow only one <details> open at a time)
+// Mobile menu toggle
+const btn = document.querySelector('.menu-toggle');
+const drawer = document.getElementById('mobile-menu');
+if (btn && drawer) {
+btn.addEventListener('click', () => {
+const isOpen = !drawer.hasAttribute('hidden');
+drawer.toggleAttribute('hidden');
+btn.setAttribute('aria-expanded', String(!isOpen));
+btn.textContent = isOpen ? '☰' : '✕';
+});
+}
+
+// OPTIONAL: Single-open FAQ (uncomment if you want only one open at a time)
 // const faqs = document.querySelectorAll('#faq details');
 // faqs.forEach(d => d.addEventListener('toggle', () => {
 // if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; });
