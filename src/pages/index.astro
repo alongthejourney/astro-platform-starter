@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
-<meta name="description" content="Track your cycle, workouts, and energy with Calibi Sync — your all-in-one wellness rhythm guide." />
+<meta name="description" content="Track your cycle, workouts, macros, and energy with Calibi Sync — your all-in-one wellness rhythm guide." />
 <meta name="theme-color" content="#F4C8C2" />
 <link rel="icon" href="/favicon.ico" />
 <!-- Fonts -->
@@ -14,36 +14,32 @@ const year = new Date().getFullYear();
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 <style>
-:root {
---bg:#FFF7F4;
---pink:#F4C8C2;
---willow:#A3C4A8;
---brown:#4B3F36;
---brown2:#6B5C4F;
---radius:16px;
-}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);
-font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
+:root { --bg:#FFF7F4; --pink:#F4C8C2; --willow:#A3C4A8; --brown:#4B3F36; --brown2:#6B5C4F; --radius:16px; }
+html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
 h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;margin:0;}
 a{text-decoration:none;color:var(--brown);}
 .container{max-width:1120px;margin:0 auto;padding:0 20px;}
 .section{padding:64px 0;}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;
-border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
-.btn-primary{background:var(--willow);color:#fff;}
-.btn-primary:hover{opacity:.9;}
-.btn-secondary{background:var(--pink);color:var(--brown);}
-.btn-secondary:hover{filter:brightness(.98);}
-.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);
-border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
-.grid{display:grid;gap:16px;}
-.grid-2{grid-template-columns:1fr;}
-@media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
-.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);}
-.footer a:hover{text-decoration:underline;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
+.btn-primary{background:var(--willow);color:#fff;} .btn-primary:hover{opacity:.9;}
+.btn-secondary{background:var(--pink);color:var(--brown);} .btn-secondary:hover{filter:brightness(.98);}
+.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
+.grid{display:grid;gap:16px;} .grid-2{grid-template-columns:1fr;} @media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
+.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);} .footer a:hover{text-decoration:underline;}
 .hero-img{width:100%;max-width:520px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
-.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);
-border-radius:999px;font-weight:600;font-size:14px;}
+.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);border-radius:999px;font-weight:600;font-size:14px;}
+/* Macro UI */
+.macro-grid{display:grid;gap:14px;grid-template-columns:1fr;} @media(min-width:720px){.macro-grid{grid-template-columns:repeat(2,1fr);}}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field input[type="number"], .field input[type="range"]{
+width:100%; padding:12px 14px; border:1px solid #DDD; border-radius:12px; background:#fff; color:var(--brown);
+}
+.note{color:var(--brown2);font-size:14px}
+.pill{display:inline-block;border-radius:999px;padding:6px 10px;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);background:#fff;cursor:pointer;}
+.pill.active{background:var(--willow);color:#fff;border-color:var(--willow);}
+.bar{height:10px;border-radius:999px;background:#eee;overflow:hidden}
+.bar > span{display:block;height:100%}
+.pct{font-weight:600;}
 #privacy,#terms{padding:64px 0;background:#fff;}
 #privacy h1,#terms h1{font-size:32px;margin-bottom:12px;}
 #privacy p,#terms p,#privacy li,#terms li{line-height:1.7;color:var(--brown2);}
@@ -54,11 +50,12 @@ border-radius:999px;font-weight:600;font-size:14px;}
 <!-- HEADER -->
 <header class="container" style="padding:18px 0;display:flex;align-items:center;justify-content:space-between;">
 <a href="#top" style="display:flex;gap:10px;align-items:center;">
-<img src="/images/logo.svg" alt="Calibi Sync" width="32" height="32" />
+<img src="/logo.png" alt="Calibi Sync" width="36" height="36" style="border-radius:8px;" />
 <strong>Calibi Sync</strong>
 </a>
 <nav style="display:flex;gap:18px;">
 <a href="#features">Features</a>
+<a href="#macros">Macros</a>
 <a href="#pricing">Pricing</a>
 <a href="#privacy">Privacy</a>
 <a href="#terms">Terms</a>
@@ -72,16 +69,15 @@ border-radius:999px;font-weight:600;font-size:14px;}
 <span class="tag">New • Live Workout Mode</span>
 <h1 style="font-size:48px;margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
 <p style="margin-top:10px;color:var(--brown2);max-width:52ch;">
-Track your cycle, workouts, and energy with Calibi Sync — your all-in-one wellness rhythm guide.
+Track your cycle, workouts, and <strong>macros</strong> with Calibi Sync — your all-in-one wellness rhythm guide.
 </p>
 <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
-<a class="btn btn-primary" href="#download">Get the App</a>
-<a class="btn btn-secondary" href="#waitlist">Join the Waitlist</a>
+<!-- Replace these href values with your real store links when ready -->
+<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">App&nbsp;Store</a>
+<a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=" target="_blank" rel="noopener">Google&nbsp;Play</a>
 </div>
 </div>
-<div>
-<img class="hero-img" src="/images/iphone-mock.png" alt="Calibi Sync app" />
-</div>
+<div><img class="hero-img" src="/images/iphone-mock.png" alt="Calibi Sync app" /></div>
 </div>
 </section>
 
@@ -91,9 +87,87 @@ Track your cycle, workouts, and energy with Calibi Sync — your all-in-one well
 <h2 style="font-size:36px;">Designed to sync with you</h2>
 <div class="grid grid-2" style="margin-top:22px;">
 <div class="card"><h3>Cycle Tracking</h3><p>Know your phases and plan with confidence.</p></div>
-<div class="card"><h3>Live Workout Mode</h3><p>Track sets, reps, weight and rest timers.</p></div>
+<div class="card"><h3>Live Workout Mode</h3><p>Track sets, reps, weight & rest timers.</p></div>
+<div class="card"><h3>Macro Tracking</h3><p>Balanced presets or custom percentages — saved on your device.</p></div>
 <div class="card"><h3>Progress Gallery</h3><p>Private photos with Face ID + privacy mode.</p></div>
-<div class="card"><h3>Journaling</h3><p>Reflect, release, and reset with daily prompts.</p></div>
+</div>
+</div>
+</section>
+
+<!-- MACRO TRACKER -->
+<section id="macros" class="section">
+<div class="container">
+<div class="card">
+<h2 style="font-size:32px;">Daily Macro Tracker</h2>
+<p class="note">Calculate grams from calories & percentages. Your last values are saved on this device.</p>
+
+<!-- Presets -->
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px;">
+<button class="pill" data-preset="balanced" title="Protein 30%, Carbs 40%, Fat 30%">Balanced</button>
+<button class="pill" data-preset="lowercarb" title="Protein 35%, Carbs 25%, Fat 40%">Lower Carb</button>
+<button class="pill" data-preset="highercarb" title="Protein 25%, Carbs 50%, Fat 25%">Higher Carb</button>
+</div>
+
+<div class="macro-grid">
+<div class="field">
+<label><strong>Total Calories</strong></label>
+<input id="calories" type="number" min="0" step="10" placeholder="e.g., 2000" />
+<span class="note">We’ll split these calories across P / C / F.</span>
+</div>
+
+<div class="field">
+<label><strong>Protein %</strong> <span class="pct" id="pPctLabel">(30%)</span></label>
+<input id="pPct" type="range" min="10" max="50" value="30" />
+</div>
+
+<div class="field">
+<label><strong>Carbs %</strong> <span class="pct" id="cPctLabel">(40%)</span></label>
+<input id="cPct" type="range" min="10" max="70" value="40" />
+</div>
+
+<div class="field">
+<label><strong>Fat %</strong> <span class="pct" id="fPctLabel">(30%)</span></label>
+<input id="fPct" type="range" min="10" max="60" value="30" />
+</div>
+</div>
+
+<p class="note" id="pctWarn" style="margin-top:8px;"></p>
+
+<!-- Visual bar -->
+<div class="bar" style="margin:16px 0 12px;">
+<span id="pBar" style="width:30%; background:#A3C4A8;"></span>
+</div>
+<div class="bar" style="margin:0 0 12px;">
+<span id="cBar" style="width:40%; background:#F4C8C2;"></span>
+</div>
+<div class="bar" style="margin:0 0 18px;">
+<span id="fBar" style="width:30%; background:#4B3F36;"></span>
+</div>
+
+<!-- Results -->
+<div class="grid grid-2">
+<div class="card" style="background:var(--bg);">
+<h3>Protein</h3>
+<p><strong id="pGrams">0</strong> g &nbsp; <span class="note" id="pCals">(0 kcal)</span></p>
+</div>
+<div class="card" style="background:var(--bg);">
+<h3>Carbs</h3>
+<p><strong id="cGrams">0</strong> g &nbsp; <span class="note" id="cCals">(0 kcal)</span></p>
+</div>
+<div class="card" style="background:var(--bg);">
+<h3>Fat</h3>
+<p><strong id="fGrams">0</strong> g &nbsp; <span class="note" id="fCals">(0 kcal)</span></p>
+</div>
+<div class="card" style="background:var(--bg);">
+<h3>Total</h3>
+<p><strong id="tCals">0</strong> kcal</p>
+</div>
+</div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+<button id="save" class="btn btn-primary" type="button">Save to this device</button>
+<button id="reset" class="btn btn-secondary" type="button">Reset</button>
+</div>
 </div>
 </div>
 </section>
@@ -106,17 +180,17 @@ Track your cycle, workouts, and energy with Calibi Sync — your all-in-one well
 <div class="grid grid-2" style="margin-top:24px;">
 <div class="card">
 <h3>Free</h3>
-<ul><li>• Cycle calendar + basic logs</li><li>• Notes & reminders</li></ul>
+<ul><li>• Cycle calendar + basic logs</li><li>• Macro calculator (on device)</li></ul>
 </div>
 <div class="card" style="border-color:var(--willow);">
 <h3>Premium</h3>
 <p style="color:var(--brown2);">$14.99 / mo or $119.99 / yr</p>
 <ul>
-<li>• Live Workout Mode</li>
+<li>• Live Workout Mode (sets/reps/weight + rest timer)</li>
 <li>• Progress Gallery + Face ID</li>
 <li>• Journaling & Insights</li>
 </ul>
-<a class="btn btn-primary" href="#download" style="margin-top:12px;">Start Syncing</a>
+<a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing</a>
 </div>
 </div>
 </div>
@@ -129,17 +203,15 @@ Track your cycle, workouts, and energy with Calibi Sync — your all-in-one well
 <h2 style="font-size:32px;">Be first to know when we launch</h2>
 <p style="color:var(--brown);">Join the waitlist and get early access.</p>
 </div>
-<form name="waitlist" method="POST" data-netlify="true" class="card"
-style="display:flex;gap:10px;background:#fff;">
+<form name="waitlist" method="POST" data-netlify="true" class="card" style="display:flex;gap:10px;background:#fff;">
 <input type="hidden" name="form-name" value="waitlist" />
-<input name="email" type="email" required placeholder="Enter your email"
-style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240px;">
+<input name="email" type="email" required placeholder="Enter your email" style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240px;">
 <button class="btn btn-primary" type="submit">Join</button>
 </form>
 </div>
 </section>
 
-<!-- PRIVACY POLICY -->
+<!-- PRIVACY -->
 <section id="privacy">
 <div class="container card">
 <h1>Privacy Policy</h1>
@@ -147,33 +219,33 @@ style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240p
 <p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
 <h2>Information We Collect</h2>
 <ul>
-<li>Account info (email, password, preferences).</li>
-<li>Wellness logs (cycle dates, workouts, notes).</li>
-<li>Photos (optional, private storage).</li>
+<li>Account info (email, preferences).</li>
+<li>Wellness logs you add (cycle dates/phases, workouts, notes).</li>
+<li>Photos (optional) stored privately.</li>
 <li>Device/usage analytics and subscription status.</li>
 </ul>
 <h2>How We Use Data</h2>
-<p>To provide app features, maintain accounts, and improve performance. We never sell data.</p>
+<p>To provide features, maintain accounts, and improve performance. We do not sell personal data.</p>
 <h2>Deletion</h2>
-<p>When you delete your account, all data is permanently deleted from active systems immediately, and removed from encrypted backups through rotation.</p>
+<p>When you delete your account, your data is removed from our active systems immediately and from encrypted backups by routine rotation.</p>
 <h2>Contact</h2>
-<p>Email: <a href="mailto:support@calibisync.com">privacy@calibisync.com</a></p>
+<p>Email: <a href="mailto:privacy@calibisync.com">privacy@calibisync.com</a></p>
 </div>
 </section>
 
-<!-- TERMS OF SERVICE -->
+<!-- TERMS -->
 <section id="terms">
 <div class="container card">
 <h1>Terms of Service</h1>
 <p><strong>Effective:</strong> October 2025</p>
 <h2>Acceptance</h2>
-<p>By using Calibi Sync, you agree to these Terms and our Privacy Policy.</p>
+<p>By using Calibi Sync you agree to these Terms and our Privacy Policy.</p>
 <h2>Health Disclaimer</h2>
-<p>Calibi Sync provides wellness tracking and insights for informational purposes only. It is not a substitute for medical advice.</p>
+<p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice.</p>
 <h2>Billing</h2>
-<p>Premium features are handled through Apple/Google billing via RevenueCat. Cancel anytime through your app store account.</p>
+<p>Premium subscriptions are billed by Apple/Google via in-app purchase. Manage or cancel in your device account settings.</p>
 <h2>Account Deletion</h2>
-<p>You may delete your account anytime. Data is removed from our systems immediately and securely.</p>
+<p>You may delete your account anytime; associated data is removed from our systems immediately.</p>
 <h2>Contact</h2>
 <p>Email: <a href="mailto:support@calibisync.com">support@calibisync.com</a></p>
 </div>
@@ -184,11 +256,119 @@ style="padding:12px 14px;border:1px solid #ddd;border-radius:10px;min-width:240p
 <div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
 <span>© {year} Calibi Sync</span>
 <nav style="display:flex;gap:16px;">
+<a href="#macros">Macros</a>
 <a href="#privacy">Privacy</a>
 <a href="#terms">Terms</a>
-<a href="#waitlist">Contact</a>
 </nav>
 </div>
 </footer>
+
+<!-- MACRO LOGIC -->
+<script>
+(function(){
+const $ = (id)=>document.getElementById(id);
+const calories = $('calories') || (function(){
+// Create inputs if user loads page before DOM drew—(SSR safety)
+return null;
+})();
+
+const ids = ['calories','pPct','cPct','fPct','pPctLabel','cPctLabel','fPctLabel','pctWarn','pBar','cBar','fBar','pGrams','pCals','cGrams','cCals','fGrams','fCals','tCals'];
+const el = {}; ids.forEach(k=> el[k]=document.getElementById(k));
+
+function clamp(v,min,max){ return Math.min(max, Math.max(min, v)); }
+
+function loadSaved(){
+try{
+const s = JSON.parse(localStorage.getItem('cs_macros')||'{}');
+if(s.calories) el.calories.value = s.calories;
+if(s.pPct) el.pPct.value = s.pPct;
+if(s.cPct) el.cPct.value = s.cPct;
+if(s.fPct) el.fPct.value = s.fPct;
+}catch(_) {}
+syncLabels(); compute();
+}
+
+function syncLabels(){
+el.pPctLabel.textContent = '('+el.pPct.value+'%)';
+el.cPctLabel.textContent = '('+el.cPct.value+'%)';
+el.fPctLabel.textContent = '('+el.fPct.value+'%)';
+el.pBar.style.width = el.pPct.value+'%';
+el.cBar.style.width = el.cPct.value+'%';
+el.fBar.style.width = el.fPct.value+'%';
+}
+
+function compute(){
+const cal = parseFloat(el.calories.value||'0');
+let p = parseFloat(el.pPct.value||'0');
+let c = parseFloat(el.cPct.value||'0');
+let f = parseFloat(el.fPct.value||'0');
+const sum = p+c+f;
+if(sum !== 100){
+el.pctWarn.textContent = 'Tip: Protein + Carbs + Fat should total 100%. (Current: '+sum+'%)';
+// Normalize softly so it still computes:
+p = p/sum*100; c = c/sum*100; f = f/sum*100;
+} else { el.pctWarn.textContent=''; }
+
+const pCals = Math.round(cal*(p/100));
+const cCals = Math.round(cal*(c/100));
+const fCals = Math.round(cal*(f/100));
+
+const pGrams = Math.round(pCals/4);
+const cGrams = Math.round(cCals/4);
+const fGrams = Math.round(fCals/9);
+
+el.pGrams.textContent = isFinite(pGrams)?pGrams:0; el.pCals.textContent='('+ (isFinite(pCals)?pCals:0) +' kcal)';
+el.cGrams.textContent = isFinite(cGrams)?cGrams:0; el.cCals.textContent='('+ (isFinite(cCals)?cCals:0) +' kcal)';
+el.fGrams.textContent = isFinite(fGrams)?fGrams:0; el.fCals.textContent='('+ (isFinite(fCals)?fCals:0) +' kcal)';
+el.tCals.textContent = isFinite(cal)?cal:0;
+}
+
+function save(){
+const s = {
+calories: el.calories.value,
+pPct: el.pPct.value,
+cPct: el.cPct.value,
+fPct: el.fPct.value
+};
+localStorage.setItem('cs_macros', JSON.stringify(s));
+}
+
+function reset(){
+el.calories.value = '';
+el.pPct.value = 30; el.cPct.value = 40; el.fPct.value = 30;
+syncLabels(); compute(); localStorage.removeItem('cs_macros');
+}
+
+// Presets
+function applyPreset(name){
+const map = {
+balanced: {p:30,c:40,f:30},
+lowercarb:{p:35,c:25,f:40},
+highercarb:{p:25,c:50,f:25}
+};
+const v = map[name];
+if(!v) return;
+el.pPct.value = v.p; el.cPct.value = v.c; el.fPct.value = v.f;
+document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+document.querySelector('.pill[data-preset="'+name+'"]').classList.add('active');
+syncLabels(); compute();
+}
+
+// Bind events
+if(el.calories){
+['input','change'].forEach(evt=>{
+el.calories.addEventListener(evt, compute);
+el.pPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
+el.cPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
+el.fPct.addEventListener(evt, ()=>{ syncLabels(); compute(); });
+});
+document.getElementById('save').addEventListener('click', ()=>{ save(); compute(); });
+document.getElementById('reset').addEventListener('click', reset);
+document.querySelectorAll('.pill').forEach(b=> b.addEventListener('click', ()=>applyPreset(b.dataset.preset)));
+// init
+loadSaved(); applyPreset('balanced');
+}
+})();
+</script>
 </body>
 </html>
