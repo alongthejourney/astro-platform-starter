@@ -1,329 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
-<meta name="description" content="Track your cycle (with phase insights), workouts, macros, and journaling — plus a Face ID private progress gallery. iOS only, 16+. Free for 7 days." />
+<meta name="description" content="Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery. iOS only, 16+. Free 7-day trial." />
 <meta name="theme-color" content="#FFFFFF" />
 <link rel="icon" href="/favicon.ico" />
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 
 <style>
 :root{
-  --bg:#FFFFFF;
-  --pink:#E6A9A7; /* pink accent */
-  --willow:#A3C4A8; /* sage green accent */
-  --brown:#4B3F36; /* main text */
-  --brown2:#6B5C4F; /* secondary text */
-  --line:#EFEFEF;
-  --radius:16px;
-
-  --shadow-1:0 1px 2px rgba(0,0,0,.05);
-  --shadow-2:0 6px 16px rgba(0,0,0,.08);
-  --shadow-3:0 16px 40px rgba(0,0,0,.10);
+--pink:#E6A9A7; /* pink (cards/shadows) */
+--sage:#A3C4A8; /* primary accent (buttons, FAQ highlights) */
+--text:#2B2B2B; /* brown heading/body */
+--text-2:#4A4A4A; /* secondary copy */
+--white:#FFFFFF;
+--radius:16px;
+--container:1100px;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--brown);
-  font-family:'Poppins',sans-serif;
-  font-size:16px;
-  line-height:1.6;
+/* Base */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+background:var(--white);
+color:var(--text);
+font:16px/1.6 "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+-webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
+img{max-width:100%;height:auto;display:block}
 
-h1,h2,h3{
-  font-family:'Playfair Display',serif;
-  line-height:1.2;
-  margin:0;
+/* Layout */
+.container{max-width:var(--container); margin:0 auto; padding:0 20px;}
+header{
+background:#fff; border-bottom:1px solid rgba(0,0,0,.06);
+position:sticky; top:0; z-index:10;
 }
-
-a{ text-decoration:none; color:var(--brown); }
-
-.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
-.section{ padding:72px 0; }
-
-.card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:26px;
-  box-shadow:var(--shadow-1);
-  transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+.nav{display:flex; align-items:center; justify-content:space-between; height:78px;}
+.brand{
+display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
 }
-.card:hover{ box-shadow:var(--shadow-2); transform:translateY(-2px); border-color:#EDEDED; }
+.brand img{width:40px; height:40px; border-radius:10px;}
+.brand-title{
+font-weight:800; letter-spacing:-.01em;
+font-size: clamp(20px, 2.2vw, 26px); /* bigger brand name */
+line-height:1;
+}
+.menu{display:flex; gap:20px; align-items:center;}
+.menu a{color:var(--text); text-decoration:none; font-weight:600;}
+.menu a:hover{opacity:.85}
 
-/* Buttons */
+/* Hero */
+.hero{padding:56px 0 28px}
+.badge{
+display:inline-flex; align-items:center; gap:.5rem;
+padding:6px 10px; border-radius:999px;
+background:rgba(163,196,168,.12);
+border:1px solid rgba(163,196,168,.25);
+font-weight:600; font-size:.9rem; color:var(--text);
+}
+.hero-grid{
+display:grid; gap:32px; grid-template-columns:1.1fr .9fr; align-items:center;
+}
+h1{
+font-family:"Playfair Display",serif;
+font-size:clamp(36px,5vw,58px);
+line-height:1.1; margin:16px 0 12px; letter-spacing:-.015em; color:var(--text);
+}
+.lead{color:var(--text-2); margin:0 0 16px;}
+.cta{display:flex; gap:12px; flex-wrap:wrap}
+
+/* Buttons (both solid sage) */
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 18px;
-  border-radius:12px;
-  font-family:'Poppins',sans-serif;
-  font-weight:600;
-  font-size:16px;
-  border:1px solid transparent;
-  transition:.15s ease-in-out;
-  cursor:pointer;
+display:inline-flex; align-items:center; justify-content:center;
+border:none; border-radius:999px; padding:14px 20px;
+font-weight:700; text-decoration:none; color:#fff;
+background:var(--sage); box-shadow:0 6px 18px rgba(163,196,168,.32);
+transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
 }
-.btn-primary{
-  background:var(--willow);
-  color:#fff;
-  box-shadow:var(--shadow-1);
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:3px solid rgba(163,196,168,.55); outline-offset:2px}
+
+/* Hero visuals */
+.hero-visual{
+background:#fff; border-radius:24px; padding:20px;
+border:1px solid rgba(234,181,161,.35);
+box-shadow:0 12px 32px rgba(234,181,161,.18);
 }
-.btn-primary:hover{
-  box-shadow:var(--shadow-2);
-  transform:translateY(-1px);
+.visual-inner{
+aspect-ratio:1/1; border-radius:20px; display:grid; place-items:center;
+background:linear-gradient(135deg, rgba(234,181,161,.30), rgba(163,196,168,.35));
+overflow:hidden;
 }
-.btn-secondary{
-  background:var(--pink);
-  color:var(--brown);
-  box-shadow:var(--shadow-1);
-}
-.btn-secondary:hover{
-  box-shadow:var(--shadow-2);
-  transform:translateY(-1px);
-  filter:brightness(.98);
+.visual-inner img{
+width:66%; max-width:420px; height:auto; object-fit:contain;
+filter: drop-shadow(0 10px 24px rgba(0,0,0,.05));
 }
 
-/* Layout helpers */
-.grid{ display:grid; gap:18px; }
-.grid-2{ grid-template-columns:1fr; }
-@media(min-width:768px){ .grid-2{ grid-template-columns:repeat(2,1fr); } }
-
-.footer{
-  padding:28px 0;
-  background:#fff;
-  border-top:1px solid var(--line);
-}
-.footer a:hover{ text-decoration:underline; }
-
-.hero-img{
-  width:100%;
-  max-width:520px;
-  border-radius:24px;
-  box-shadow:var(--shadow-3);
-}
-.tag{
-  display:inline-block;
-  padding:6px 10px;
-  background:var(--pink);
-  color:var(--brown);
-  border:1px solid color-mix(in oklab, var(--pink) 60%, var(--line));
-  border-radius:999px;
-  font-weight:600;
-  font-size:14px;
-  box-shadow:var(--shadow-1);
+/* Gradient divider */
+.divider{
+height:2px; margin:32px 0 0;
+background:linear-gradient(90deg, transparent, var(--pink), var(--sage), transparent);
+border-radius:2px;
 }
 
-.muted{ color:var(--brown2); }
-.list{ margin:10px 0 0 0; padding:0; list-style:none; }
-.list li{ margin:8px 0; }
+/* Sections */
+section{padding:44px 0}
+h2{
+font-family:"Playfair Display",serif;
+font-size:clamp(24px,3.6vw,36px);
+margin:0 0 12px; color:var(--text);
+}
 
-/* FAQ */
-#faq .qa{ background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-1); }
-#faq details{ border-bottom:1px solid var(--line); }
-#faq details:last-child{ border-bottom:none; }
-#faq summary{ cursor:pointer; list-style:none; padding:16px 18px; font-weight:600; }
-#faq details[open] summary{ background:color-mix(in oklab, #fff 85%, var(--pink) 15%); }
-#faq .answer{ padding:0 18px 18px 18px; color:var(--brown2); }
+/* Features */
+.features{display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));}
+.card{
+background:#fff; padding:20px; border-radius:var(--radius);
+border:1px solid rgba(234,181,161,.40);
+box-shadow:0 8px 24px rgba(234,181,161,.18);
+}
+.card h3{margin:0 0 6px; font-size:1.05rem; color:var(--text);}
+.card p{margin:0; color:var(--text-2);}
+.strip{
+margin-top:20px; padding:18px; color:var(--text-2);
+border:1px solid rgba(234,181,161,.40); border-radius:14px;
+box-shadow:0 10px 28px rgba(234,181,161,.16);
+}
+
+/* FAQ (sage theme, no pink outlines) */
+.faq{padding:56px 0; border-top:1px solid rgba(0,0,0,.06);}
+.faq-grid{max-width:900px; margin:12px auto 0; display:grid; gap:12px;}
+details{
+border-radius:14px; background:rgba(163,196,168,.10); /* sage wash */
+border:1px solid rgba(163,196,168,.30); /* sage border */
+padding:14px 16px;
+transition:box-shadow .15s ease, background .15s ease;
+}
+details[open]{background:rgba(163,196,168,.14); box-shadow:0 10px 26px rgba(163,196,168,.18);}
+summary{
+list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
+font-weight:700; color:var(--text);
+}
+summary::-webkit-details-marker{display:none}
+.faq-qicon{
+width:28px; height:28px; border-radius:999px; flex:0 0 28px;
+display:grid; place-items:center; background:rgba(163,196,168,.22);
+color:#1d3a29; font-weight:800; font-size:.9rem;
+}
+.faq-a{margin:10px 2px 2px; color:var(--text-2);}
+
+/* Policies */
+.policy{padding:56px 0; border-top:1px solid rgba(0,0,0,.06);}
+.policy p{max-width:900px; margin:0 auto 16px; color:var(--text-2);}
+
+/* Footer */
+footer{padding:32px 0 48px; border-top:1px solid rgba(0,0,0,.06); color:var(--text-2);}
+footer a{color:var(--text); text-decoration:none; font-weight:600}
+footer a:hover{opacity:.85}
+
+/* Responsive */
+@media (max-width: 900px){ .hero-grid{grid-template-columns:1fr} }
 </style>
 </head>
-
 <body>
-<!-- HEADER -->
-<header class="container" style="padding:18px 0; display:flex; align-items:center; justify-content:space-between;">
-  <a href="#top" style="display:flex; gap:12px; align-items:center;">
-    <img src="/Untitled%20design.PNG" alt="Calibi Sync Logo" width="42" height="42" style="border-radius:10px; vertical-align:middle;" />
-    <strong style="font-size:18px;">Calibi Sync</strong>
-  </a>
-  <nav style="display:flex; gap:18px;">
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="#privacy">Privacy</a>
-    <a href="#terms">Terms</a>
-  </nav>
+<!-- Header -->
+<header>
+<div class="container nav">
+<a class="brand" href="#">
+<!-- Small header logo -->
+<img src="logo.png" alt="Calibi Sync logo">
+<span class="brand-title">Calibi Sync</span>
+</a>
+<nav class="menu">
+<a href="#features">Features</a>
+<a href="#faq">FAQ</a>
+<a href="#pricing">Pricing</a>
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+</nav>
+</div>
 </header>
 
-<!-- HERO -->
-<section id="top" class="section">
-  <div class="container" style="display:grid; gap:28px; align-items:center;">
-    <div>
-      <span class="tag">iOS only • 16+</span>
-      <h1 style="font-size:48px; margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
-      <p class="muted" style="margin-top:10px; max-width:52ch;">Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.</p>
-      <p class="muted" style="margin-top:6px;">Free for 7 days. Then subscribe to continue.</p>
-      <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener">Start Syncing on the App&nbsp;Store</a>
-        <a class="btn btn-secondary" href="#features">See Features</a>
-      </div>
-    </div>
-    <div>
-      <img class="hero-img" src="/d%20(1200%20x%201200%20px)%20-%201.png" alt="Calibi Sync App" width="600" height="600" />
-    </div>
-  </div>
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<span class="badge">iOS only · 16+</span>
+<div class="hero-grid">
+<div>
+<h1>Your rhythm. Your wellness. In sync.</h1>
+<p class="lead">Track your cycle (with phase insights), log workouts, count macros, journal, and keep a Face ID–protected progress gallery.</p>
+<p class="lead">Free 7-day trial, then subscribe to continue.</p>
+<div class="cta">
+<a class="btn" href="https://apps.apple.com/">Start Syncing on the App Store</a>
+<a class="btn" href="#features">See Features</a>
+</div>
+<div class="divider"></div>
+</div>
+
+<!-- Large hero logo with soft gradient backdrop -->
+<div class="hero-visual">
+<div class="visual-inner">
+<!-- Replace with your 1200×1200 master logo -->
+<img src="/d%20(1200%20x%201200%20px)%20-%201.png" alt="Calibi Sync brand mark">
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="section">
-  <div class="container">
-    <h2 style="font-size:36px;">Designed to sync with you</h2>
-    <div class="grid grid-2" style="margin-top:22px;">
-      <div class="card">
-        <h3>Cycle Tracking</h3>
-        <ul class="list"><li>Phase insights tailored to your rhythm.</li></ul>
-      </div>
-      <div class="card">
-        <h3>Workout Logs</h3>
-        <ul class="list"><li>Track sessions, sets/reps/weights, and rest.</li></ul>
-      </div>
-      <div class="card">
-        <h3>Macro Counting</h3>
-        <ul class="list"><li>Dial in protein, carbs, and fats to your goals.</li></ul>
-      </div>
-      <div class="card">
-        <h3>Journaling</h3>
-        <ul class="list"><li>Reflect and reset with prompts and notes.</li></ul>
-      </div>
-      <div class="card">
-        <h3>Progress Gallery</h3>
-        <ul class="list"><li>Face ID + privacy mode to keep photos secure.</li></ul>
-      </div>
-    </div>
-  </div>
+<!-- Features -->
+<section id="features">
+<div class="container">
+<h2>Designed to sync with you</h2>
+<div class="features">
+<article class="card"><h3>Cycle Tracking</h3><p>Phase insights tailored to your rhythm.</p></article>
+<article class="card"><h3>Workout Logs</h3><p>Track sessions, sets/reps/weights, and rest.</p></article>
+<article class="card"><h3>Macro Counting</h3><p>Dial in protein, carbs, and fats to your goals.</p></article>
+<article class="card"><h3>Journaling</h3><p>Reflect with prompts and notes by cycle phase.</p></article>
+<article class="card"><h3>Progress Gallery</h3><p>Face ID + privacy mode to keep photos secure.</p></article>
+<article class="card"><h3>Insights</h3><p>Weekly fitness & food tips that adapt to your phase.</p></article>
+</div>
+<div class="strip" id="pricing"><strong>Membership ·</strong> Free for 7 days, then subscribe monthly or yearly. Cancel anytime.</div>
+</div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="section">
-  <div class="container" style="text-align:center;">
-    <h2 style="font-size:36px;">Membership</h2>
-    <p class="muted" style="margin-top:6px;">Free for 7 days, then continue with a subscription.</p>
-
-    <div class="grid grid-2" style="margin-top:24px;">
-      <div class="card">
-        <h3>Trial</h3>
-        <p class="muted">7-day free access</p>
-        <ul class="list">
-          <li>Cycle tracking with phase insights</li>
-          <li>Workout logging</li>
-          <li>Macro counting</li>
-          <li>Journaling</li>
-          <li>Progress gallery (Face ID + privacy mode)</li>
-        </ul>
-      </div>
-
-      <div class="card" style="border-color: color-mix(in oklab, var(--willow) 40%, #fff);">
-        <h3>Premium</h3>
-        <p class="muted">After trial • iOS only</p>
-        <ul class="list">
-          <li>All core features unlocked</li>
-          <li>Future updates & insights</li>
-          <li>Priority support</li>
-        </ul>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/" target="_blank" rel="noopener" style="margin-top:12px;">Start Syncing on the App&nbsp;Store</a>
-      </div>
-    </div>
-  </div>
+<!-- FAQ (sage theme, no pink outline) -->
+<section class="faq" id="faq">
+<div class="container">
+<h2>FAQ</h2>
+<div class="faq-grid">
+<details>
+<summary><span class="faq-qicon">?</span>Is Calibi Sync free?</summary>
+<div class="faq-a">Yes. You get a 7-day free trial. After that, choose a monthly or yearly plan. Cancel anytime in your App Store settings.</div>
+</details>
+<details>
+<summary><span class="faq-qicon">?</span>Is my data private?</summary>
+<div class="faq-a">Absolutely. Your logs and photos are stored securely and accessible only to you. We never sell your data.</div>
+</details>
+<details>
+<summary><span class="faq-qicon">?</span>Android support?</summary>
+<div class="faq-a">We’re focused on the best iOS experience first (iOS 16+). Android is on our roadmap.</div>
+</details>
+<details>
+<summary><span class="faq-qicon">?</span>Can I export or delete my data?</summary>
+<div class="faq-a">Yes. Export or request deletion from the in-app Settings or email us at support@calibisync.com.</div>
+</details>
+<details>
+<summary><span class="faq-qicon">?</span>Does it work offline?</summary>
+<div class="faq-a">You can view previously synced data offline. New entries need a connection to sync to your account.</div>
+</details>
+</div>
+</div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="section">
-  <div class="container">
-    <h2 style="font-size:32px;">Frequently Asked Questions</h2>
-    <div class="qa" style="margin-top:18px;">
-      <details>
-        <summary>Is Calibi Sync available on Android?</summary>
-        <div class="answer">Not yet — Calibi Sync is currently <strong>iOS only</strong>. Android is on our roadmap.</div>
-      </details>
-      <details>
-        <summary>How does the 7-day free trial work?</summary>
-        <div class="answer">You get full access for 7 days. After that, subscribe through the Apple App Store to continue.</div>
-      </details>
-      <details>
-        <summary>Who is Calibi Sync for?</summary>
-        <div class="answer">The app is designed for users <strong>aged 16+</strong> who want private cycle, workout, macro, and mindset tracking.</div>
-      </details>
-      <details>
-        <summary>What does “Face ID + privacy mode” mean?</summary>
-        <div class="answer">Your progress gallery can be locked with Face ID; privacy mode hides thumbnails until unlocked.</div>
-      </details>
-      <details>
-        <summary>Can I delete my data?</summary>
-        <div class="answer">Yes. Delete your account in the app to remove your data from our active systems immediately.</div>
-      </details>
-      <details>
-        <summary>Do you sell my data?</summary>
-        <div class="answer">No. We do not sell personal data. See the Privacy Policy for details.</div>
-      </details>
-    </div>
-  </div>
+<!-- Privacy -->
+<section class="policy" id="privacy">
+<div class="container">
+<h2>Privacy Policy</h2>
+<p>We collect only what’s needed to provide features like cycle tracking, workout logging, and secure photo storage. Account data (e.g., email) and usage logs are stored securely. Your entries and photos are never sold or shared without consent.</p>
+<p>You may request data export or deletion any time via the app’s Settings or by emailing <strong>support@calibisync.com</strong>. We use limited cookies and anonymized analytics to improve performance.</p>
+<p>By using Calibi Sync, you agree to this policy. We’ll update this page if our practices change.</p>
+</div>
 </section>
 
-<!-- PRIVACY -->
-<section id="privacy" class="section">
-  <div class="container card">
-    <h1>Privacy Policy</h1>
-    <p><strong>Effective:</strong> October 2025</p>
-    <p>Calibi Sync LLC (“Calibi Sync,” “we,” “us”) operates the Calibi Sync mobile app and website. This policy explains what we collect, how we use it, and your choices.</p>
-    <h2>Information We Collect</h2>
-    <ul class="list">
-      <li>Account info (email, preferences).</li>
-      <li>Wellness logs you add (cycle dates/phases, workouts, notes).</li>
-      <li>Photos (optional) stored privately.</li>
-      <li>Device/usage analytics and subscription status.</li>
-    </ul>
-    <h2>How We Use Data</h2>
-    <p>To provide features, maintain accounts, and improve performance. We do not sell personal data.</p>
-    <h2>Deletion</h2>
-    <p>When you delete your account, your data is removed from our active systems immediately and from encrypted backups by routine rotation.</p>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:privacy@calibisync.com">privacy@calibisync.com</a></p>
-  </div>
+<!-- Terms -->
+<section class="policy" id="terms">
+<div class="container">
+<h2>Terms of Service</h2>
+<p>By using Calibi Sync, you agree to these terms. The app and website are provided “as is.” Subscriptions renew automatically unless cancelled through the App Store before renewal.</p>
+<p>You may not reverse-engineer, redistribute, or copy the app or its contents. All intellectual property belongs to Calibi Sync LLC.</p>
+<p>We may update these terms as our services evolve. Continued use after changes indicates acceptance. For questions, contact <strong>support@calibisync.com</strong>.</p>
+</div>
 </section>
 
-<!-- TERMS -->
-<section id="terms" class="section">
-  <div class="container card">
-    <h1>Terms of Service</h1>
-    <p><strong>Effective:</strong> October 2025</p>
-    <h2>Acceptance</h2>
-    <p>By using Calibi Sync you agree to these Terms and our Privacy Policy.</p>
-    <h2>Health Disclaimer</h2>
-    <p>Calibi Sync provides wellness tracking and insights for informational purposes only and is not a substitute for medical advice. For users aged 16+.</p>
-    <h2>Billing</h2>
-    <p>After your 7-day free trial, subscriptions are billed via the Apple App Store. Manage or cancel anytime in your device account settings.</p>
-    <h2>Account Deletion</h2>
-    <p>You may delete your account anytime; associated data is removed from our systems immediately.</p>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:support@calibisync.com">support@calibisync.com</a></p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
-    <span id="year"></span>
-    <nav style="display:flex; gap:16px;">
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
-    </nav>
-  </div>
+<!-- Footer -->
+<footer>
+<div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
+<div style="display:flex; align-items:center; gap:10px;">
+<img src="Untitled%20design.PNG" width="43" height="42" alt="" style="border-radius:6px">
+<strong>Calibi Sync</strong>
+</div>
+<div style="display:flex; gap:16px; flex-wrap:wrap;">
+<a href="#features">Features</a>
+<a href="#faq">FAQ</a>
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+</div>
+<div style="opacity:.75; width:100%; margin-top:8px;">© <span id="year"></span> Calibi Sync. All rights reserved.</div>
+</div>
 </footer>
 
 <script>
-  const year = new Date().getFullYear();
-  document.getElementById("year").textContent = `© ${year} Calibi Sync — iOS only • 16+`;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// OPTIONAL: Single-open FAQ (uncomment to allow only one <details> open at a time)
+// const faqs = document.querySelectorAll('#faq details');
+// faqs.forEach(d => d.addEventListener('toggle', () => {
+// if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; });
+// }));
 </script>
 </body>
 </html>
