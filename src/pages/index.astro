@@ -1,21 +1,131 @@
+--
+const year = new Date().getFullYear();
 ---
-import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calibi Sync — Your rhythm. Your wellness. In sync.</title>
+<meta name="description" content="Track your cycle, workouts, and energy with Calibi Sync — your all-in-one wellness rhythm guide." />
+<meta name="theme-color" content="#F4C8C2" />
+<link rel="icon" href="/favicon.ico" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+rel="stylesheet"
+/>
+<style>
+:root {
+--bg:#FFF7F4;
+--pink:#F4C8C2;
+--willow:#A3C4A8;
+--brown:#4B3F36;
+--brown2:#6B5C4F;
+--radius:16px;
+}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--brown);
+font-family:'Poppins',system-ui,sans-serif;font-size:16px;line-height:1.6;}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;margin:0;}
+a{text-decoration:none;color:var(--brown);}
+.container{max-width:1120px;margin:0 auto;padding:0 20px;}
+.section{padding:64px 0;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;
+border-radius:12px;font-weight:600;border:1px solid transparent;transition:.15s ease-in-out;}
+.btn-primary{background:var(--willow);color:#fff;}
+.btn-primary:hover{opacity:.9;}
+.btn-secondary{background:var(--pink);color:var(--brown);}
+.btn-secondary:hover{filter:brightness(.98);}
+.card{background:#fff;border:1px solid color-mix(in oklab,var(--willow)25%,transparent);
+border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.04);}
+.grid{display:grid;gap:16px;}
+.grid-2{grid-template-columns:1fr;}
+@media(min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr);}}
+.footer{padding:28px 0;background:#fff;border-top:1px solid color-mix(in oklab,var(--willow)25%,transparent);}
+.footer a:hover{text-decoration:underline;}
+.hero-img{width:100%;max-width:520px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
+.tag{display:inline-block;padding:6px 10px;background:var(--pink);color:var(--brown);
+border-radius:999px;font-weight:600;font-size:14px;}
+</style>
+</head>
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+<body>
+<!-- HEADER -->
+<header class="container" style="padding:18px 0;display:flex;align-items:center;justify-content:space-between;">
+<a href="/" style="display:flex;gap:10px;align-items:center;">
+<img src="/images/logo.svg" alt="Calibi Sync" width="32" height="32" />
+<strong>Calibi Sync</strong>
+</a>
+<nav style="display:flex;gap:18px;">
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
----
+<!-- HERO -->
+<section class="section">
+<div class="container" style="display:grid;gap:28px;align-items:center;">
+<div>
+<span class="tag">New • Live Workout Mode</span>
+<h1 style="font-size:48px;margin-top:12px;">Your rhythm. Your wellness. In sync.</h1>
+<p style="margin-top:10px;color:var(--brown2);max-width:52ch;">
+Track your cycle, workouts, and energy with Calibi Sync — your all-in-one wellness rhythm guide.
+</p>
+<div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
+<a class="btn btn-primary" href="#download">Get the App</a>
+<a class="btn btn-secondary" href="#waitlist">Join the Waitlist</a>
+</div>
+</div>
+<div>
+<img class="hero-img" src="/images/iphone-mock.png" alt="Calibi Sync app" />
+</div>
+</div>
+</section>
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+<!-- FEATURES -->
+<section id="features" class="section" style="background:#fff;">
+<div class="container">
+<h2 style="font-size:36px;">Designed to sync with you</h2>
+<div class="grid grid-2" style="margin-top:22px;">
+<div class="card"><h3>Cycle Tracking</h3><p>Know your phases and plan with confidence.</p></div>
+<div class="card"><h3>Live Workout Mode</h3><p>Track sets, reps, weight and rest timers.</p></div>
+<div class="card"><h3>Progress Gallery</h3><p>Private photos with Face ID + privacy mode.</p></div>
+<div class="card"><h3>Journaling</h3><p>Reflect, release, and reset with daily prompts.</p></div>
+</div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+<div class="container" style="text-align:center;">
+<h2 style="font-size:36px;">Membership</h2>
+<p style="color:var(--brown2);margin-top:6px;">Start free • Upgrade for deeper insights</p>
+<div class="grid grid-2" style="margin-top:24px;">
+<div class="card">
+<h3>Free</h3>
+<ul><li>• Cycle calendar + basic logs</li><li>• Notes & reminders</li></ul>
+</div>
+<div class="card" style="border-color:var(--willow);">
+<h3>Premium</h3>
+<p style="color:var(--brown2);">$14.99 / mo or $119.99 / yr</p>
+<ul>
+<li>• Live Workout Mode</li>
+<li>• Progress Gallery + Face ID</li>
+<li>• Journaling & Insights</li>
+</ul>
+<a class="btn btn-primary" href="#download" style="margin-top:12px;">Start Syncing</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WAITLIST CTA -->
+<section id="contact" class="section" style="background:var(--pink);">
+<div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+<div>
+<h2 style="font-size:32px;">Be first to know when we launch</h2>
+<p style="color:var(--brown);">Join the waitlist and get early access.</p>
+</div>
+<form name="waitlist" method="POST" data-netlify="
