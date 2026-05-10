@@ -17,7 +17,7 @@
     content="Cycle-synced meals, workouts, journaling, progress, and daily guidance built around your rhythm."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-calibi-sync.png" />
+  <meta property="og:image" content="/calibi-icon.PNG" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Calibi Sync — Cycle-Synced Wellness" />
@@ -26,8 +26,8 @@
     content="Align meals, workouts, journaling, and daily guidance with your cycle phase."
   />
 
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/calibi-icon.PNG" />
+  <link rel="apple-touch-icon" href="/calibi-icon.PNG" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,7 +51,6 @@
       --radius: 22px;
       --container: 1120px;
 
-      /* Backwards-compatible names for older styles */
       --pink: var(--blush);
       --sage: var(--willow);
       --text: var(--roaster);
@@ -353,6 +352,7 @@
     .visual-inner img {
       width: 68%;
       max-width: 420px;
+      border-radius: 28px;
       filter: drop-shadow(0 16px 28px rgba(74, 59, 50, 0.12));
     }
 
@@ -592,7 +592,7 @@
     <div class="container nav">
       <a class="brand" href="#">
         <img
-          src="/Untitled%20design.PNG"
+          src="/calibi-icon.PNG"
           alt="Calibi Sync logo"
           width="48"
           height="48"
@@ -671,11 +671,11 @@
             <div class="divider"></div>
           </div>
 
-          <div class="hero-visual" aria-label="Calibi Sync brand visual">
+          <div class="hero-visual" aria-label="Calibi Sync app icon">
             <div class="visual-inner">
               <img
-                src="/d%20(1200%20x%201200%20px)%20-%201.png"
-                alt="Calibi Sync brand mark"
+                src="/calibi-icon.PNG"
+                alt="Calibi Sync app icon"
               />
             </div>
           </div>
@@ -1005,7 +1005,7 @@
     >
       <div style="display:flex; align-items:center; gap:10px;">
         <img
-          src="/Untitled%20design.PNG"
+          src="/calibi-icon.PNG"
           width="28"
           height="28"
           style="border-radius:8px"
@@ -1061,9 +1061,11 @@
     closeBtn?.addEventListener('click', closeMenu);
     scrim?.addEventListener('click', closeMenu);
     links.forEach((a) => a.addEventListener('click', closeMenu));
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
     });
+
     window.addEventListener('resize', () => {
       if (window.innerWidth > 600) closeMenu();
     });
